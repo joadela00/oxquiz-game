@@ -103,11 +103,11 @@ answer: false
 },
 {
 question: "전화를 망치면 행지팀에 비밀로 한다",
-answer: FALSE
+answer: false
 },
 {
 question: "점심시간에는 모니터링을 하지 않는다",
-answer: TRUE
+answer: true
 }
 ];
 
