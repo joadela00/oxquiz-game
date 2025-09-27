@@ -61,20 +61,16 @@ const questionCounterElement = document.getElementById('question-counter');
 const rankingSectionFinal = document.getElementById('ranking-section-final');
 const finalRankingList = document.getElementById('final-ranking-list');
 
-// 초기 랭킹 섹션은 이제 팝업 모달 안에 있습니다.
-// const rankingSectionInitial = document.getElementById('ranking-section-initial'); // 이 요소는 더 이상 필요 없음
-const initialRankingList = document.getElementById('initial-ranking-list'); // 팝업 내 랭킹 리스트
-const showInitialRankingButton = document.getElementById('show-initial-ranking-btn'); // 랭킹 보기 버튼 이름 변경
+const initialRankingList = document.getElementById('initial-ranking-list');
+const showInitialRankingButton = document.getElementById('show-initial-ranking-btn');
 
 const restartButton = document.getElementById('restart-button');
 
-// 커스텀 팝업창 요소들
 const customAlertOverlay = document.getElementById('custom-alert-overlay');
 const customAlertTitle = document.getElementById('custom-alert-title');
 const customAlertMessage = document.getElementById('custom-alert-message');
 const customAlertOkBtn = document.getElementById('custom-alert-ok-btn');
 
-// 랭킹 팝업창 요소들 추가
 const rankingModalOverlay = document.getElementById('ranking-modal-overlay');
 const rankingModalCloseBtn = document.getElementById('ranking-modal-close-btn');
 
@@ -85,18 +81,15 @@ let timerId;
 let quizStartTime;
 let quizEndTime;
 
-// 커스텀 알림창을 표시하는 함수
 function customAlert(title, message) {
     customAlertTitle.textContent = title;
     customAlertMessage.textContent = message;
-    customAlertOverlay.style.display = 'flex'; // 오버레이 표시
+    customAlertOverlay.style.display = 'flex';
 }
 
-// 커스텀 알림창 숨기는 이벤트 리스너
 customAlertOkBtn.addEventListener('click', () => {
-    customAlertOverlay.style.display = 'none'; // 오버레이 숨기기
+    customAlertOverlay.style.display = 'none';
 });
-
 
 function shuffleArray(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -123,7 +116,7 @@ function startQuizProcess() {
     quizScreen.style.display = 'flex';
 
     const tempShuffled = shuffleArray([...originalQuizData]);
-    shuffledQuizData = tempShuffled.slice(0, 5); // 5개만 가져오기
+    shuffledQuizData = tempShuffled.slice(0, 5);
 
     currentQuizIndex = 0;
     score = 0;
@@ -135,7 +128,6 @@ function startQuizProcess() {
     scoreDisplay.style.display = 'block';
     questionCounterElement.style.display = 'block';
 
-    // 초기 랭킹 팝업은 닫아둡니다
     rankingModalOverlay.style.display = 'none';
     
     // 퀴즈 시작 시 #quiz-screen의 배경을 기본 배경으로 설정 (quiz-finished-bg 클래스 제거)
@@ -175,7 +167,7 @@ function loadQuiz() {
 
             if (timeLeft <= 0) {
                 clearInterval(timerId);
-                resultMessageElement.textContent = '시간 초과!';
+                resultMessageElement.textContent = '시간 초과! EMOJI_0 오답입니다.';
                 resultMessageElement.style.color = '#e74c3c';
                 oButton.disabled = true;
                 xButton.disabled = true;
@@ -192,8 +184,13 @@ function loadQuiz() {
         const totalTimeTakenMillis = quizEndTime - quizStartTime;
         const totalTimeTakenFormatted = (totalTimeTakenMillis / 1000).toFixed(2);
 
-        questionElement.textContent = `모든 문제를 다 풀었습니다!`;
-        resultMessageElement.textContent = `최종 점수: ${score} / ${shuffledQuizData.length}점,  ${totalTimeTakenFormatted}초`;
+        // "모든 문제를 다 풀었습니다!" 문구를 여기서 제거합니다.
+        questionElement.textContent = ''; 
+        // 텍스트를 비웠으니, h1이 공간을 차지하지 않도록 추가로 조정
+        questionElement.style.height = '0';
+        questionElement.style.overflow = 'hidden';
+
+        resultMessageElement.textContent = `최종 점수: ${score} / ${shuffledQuizData.length}점, 소요 시간: ${totalTimeTakenFormatted}초`;
         resultMessageElement.style.color = '#333';
 
         oButton.style.display = 'none';
@@ -267,30 +264,27 @@ startQuizButton.addEventListener('click', startQuizProcess);
 oButton.addEventListener('click', () => checkAnswer(true));
 xButton.addEventListener('click', () => checkAnswer(false));
 
-// 초기 랭킹 보기 버튼 이벤트 리스너 변경 (팝업 표시)
 showInitialRankingButton.addEventListener('click', () => {
-    displayRanking(initialRankingList); // 랭킹 목록을 갱신하고
-    rankingModalOverlay.style.display = 'flex'; // 팝업을 띄웁니다
+    displayRanking(initialRankingList);
+    rankingModalOverlay.style.display = 'flex';
 });
 
-// 랭킹 팝업 닫기 버튼 이벤트 리스너
 rankingModalCloseBtn.addEventListener('click', () => {
-    rankingModalOverlay.style.display = 'none'; // 팝업을 닫습니다
+    rankingModalOverlay.style.display = 'none';
 });
-
 
 restartButton.addEventListener('click', () => {
     preQuizScreen.style.display = 'flex';
     quizScreen.style.display = 'none';
     employeeIdInput.value = '';
     
-    // 초기 랭킹 팝업 닫아두기
+    // 최종 화면에서 설정된 스타일 초기화
+    questionElement.style.height = ''; // 높이 초기화
+    questionElement.style.overflow = ''; // overflow 초기화
+    questionElement.textContent = ''; // 텍스트 초기화 (혹시 모를 잔여 텍스트)
+
     rankingModalOverlay.style.display = 'none';
-    
-    // 재시작 시 #quiz-screen의 배경을 기본으로 돌려놓기 (quiz-finished-bg 클래스 제거)
     quizScreen.classList.remove('quiz-finished-bg');
-    
-    // 최종 랭킹 화면의 z-index 초기화
     rankingSectionFinal.style.position = '';
     rankingSectionFinal.style.zIndex = '';
 });
@@ -302,11 +296,11 @@ function checkAnswer(userAnswer) {
 
     const currentQuiz = shuffledQuizData[currentQuizIndex];
     if (userAnswer === currentQuiz.answer) {
-        resultMessageElement.textContent = '정답입니다!';
+        resultMessageElement.textContent = '정답입니다! EMOJI_1';
         resultMessageElement.style.color = '#27ae60';
         score++;
     } else {
-        resultMessageElement.textContent = '오답입니다...';
+        resultMessageElement.textContent = '오답입니다... EMOJI_2';
         resultMessageElement.style.color = '#e74c3c';
     }
     scoreDisplay.textContent = `점수: ${score}`;
@@ -317,7 +311,6 @@ function checkAnswer(userAnswer) {
     }, 2000);
 }
 
-// 초기 로드 시 화면 설정
 preQuizScreen.style.display = 'flex';
 quizScreen.style.display = 'none';
-rankingModalOverlay.style.display = 'none'; // 랭킹 팝업 초기에는 숨김
+rankingModalOverlay.style.display = 'none';
