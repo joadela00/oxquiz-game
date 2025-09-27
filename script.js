@@ -1,45 +1,114 @@
+/* 코드를 읽는 건 너무 야비해요 */
 
 const originalQuizData = [
-    {
-        question: "서울은 대한민국의 수도이다.",
-        answer: true
-    },
-    {
-        question: "지구는 평평하다.",
-        answer: false
-    },
-    {
-        question: "물은 100도에서 끓는다. (해수면 기준)",
-        answer: true
-    },
-    {
-        question: "대한민국은 삼면이 바다로 둘러싸여 있다.",
-        answer: true
-    },
-    {
-        question: "바나나는 나무에서 열리는 과일이다.",
-        answer: false
-    },
-    {
-        question: "이 꽃은 무궁화인가요?",
-        answer: true
-    },
-    {
-        question: "고양이는 발톱을 숨길 수 있다.",
-        answer: true
-    },
-    {
-        question: "이 동물은 코끼리인가요?",
-        answer: false
-    },
-    {
-        question: "대한민국의 국화는 무궁화이다.",
-        answer: true
-    },
-    {
-        question: "하늘은 언제나 파란색이다.",
-        answer: false
-    }
+   {
+question: "모니터링은 평일 7일간 진행한다",
+answer: false
+},
+{
+question: "계속 벨이 울리면 끊어질때까지 기다린다",
+answer: false
+},
+{
+question: "전화를 끊고나면 바로 행지팀에 알려준다",
+answer: true
+},
+{
+question: "출근하면 시나리오를 켜놓는다",
+answer: true
+},
+{
+question: "첫인사는 '여보세요?'라고 한다",
+answer: false
+},
+{
+question: "나 하나쯤은 대충 받아도 끄떡 없다",
+answer: false
+},
+{
+question: "첫인사+끝인사는 45점을 차지한다",
+answer: true
+},
+{
+question: "친근하게 반말을 섞어도 된다",
+answer: false
+},
+{
+question: "돌려주기는 가급적 하지 않는다",
+answer: true
+},
+{
+question: "2차수신 시, 용무인지는 선택사항이다",
+answer: false
+},
+{
+question: "끝인사는 '네~'라고 짧게 한다",
+answer: false
+},
+{
+question: "첫인사는 발음이 중요하지 않다",
+answer: false
+},
+{
+question: "바쁘니까 고객보다 먼저 끊는다",
+answer: false
+},
+{
+question: "전화를 돌리면 보너스 점수를 받는다",
+answer: false
+},
+{
+question: "모니터링 전화냐고 반드시 되물어본다",
+answer: false
+},
+{
+question: "엉덩이를 떼면 이석을 누른다",
+answer: true
+},
+{
+question: "모니터링으로 표창을 받을 수 있다",
+answer: true
+},
+{
+question: "모든 질문은 시나리오대로만 한다",
+answer: true
+},
+{
+question: "2차수신보다 메모가 낫다",
+answer: true
+},
+{
+question: "2차수신자는 이름을 생략할 수 있다",
+answer: false
+},
+{
+question: "업무전화에서 직원의 이름은 비공개대상이다",
+answer: false
+},
+{
+question: "모니터링은 아침 9시반부터 시작한다",
+answer: true
+},
+{
+question: "팀원이 전화를 받는동안 큰소리로 응원전을 펼친다",
+answer: false
+},
+{
+question: "이 시기, 빈자리 이석을 눌러주면 국제법 위반이다",
+answer: false
+},
+{
+question: "당겨받기는 귀여운 막내가 담당한다",
+answer: false
+},
+{
+question: "전화를 망치면 행지팀에 비밀로 한다",
+answer: FALSE
+},
+{
+question: "점심시간에는 모니터링을 하지 않는다",
+answer: TRUE
+}
 ];
 
 let shuffledQuizData = [];

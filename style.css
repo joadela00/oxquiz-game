@@ -53,7 +53,7 @@ body {
 #quiz-screen.quiz-finished-bg {
     background-image: url('background2.jpg') !important; /* 이미지 직접 적용, 오버레이 제거 */
     background-color: transparent !important; /* 배경색도 투명 */
-    padding-top: 50px; /* 300px로 하면 너무 많이 내려갈까봐 우선 100px로 조정, 새눤님께서 숫자 조절 가능! */
+    padding-top: 50px; /* 300px로 하면 너무 많이 내려갈까봐 우선 50px로 조정 */
     justify-content: flex-start; /* 패딩 탑을 줬으니 정렬을 위에서부터 시작하도록 변경 */
 }
 
