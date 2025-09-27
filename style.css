@@ -10,8 +10,7 @@ body {
     flex-direction: column;
     overflow: hidden;
 
-    /* 페이지 전체 배경: 옅은 핑크톤 단색 */
-    background-color: #ffe0f0;
+    background-color: #ffe0f0; /* 페이지 전체 배경: 옅은 핑크톤 단색 */
 }
 
 .main-container {
@@ -29,7 +28,6 @@ body {
     overflow: hidden;
 }
 
-/* 각 화면 (pre-quiz-screen, quiz-screen) 공통 스타일 - 배경 이미지와 투명 오버레이를 직접 지정 */
 .screen {
     background-size: cover;
     background-position: center;
@@ -39,23 +37,21 @@ body {
 
     padding: 40px;
     border-radius: inherit;
-    min-height: 400px; /* 각 화면의 최소 높이 지정 (액자 크기 유지) */
+    min-height: 400px; /* 각 화면의 최소 높이 유지 */
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: center; /* 여전히 내용을 세로 중앙에 정렬하되, */
     align-items: center;
     width: 100%;
     box-sizing: border-box;
 }
 
-/* 각 개별 화면의 배경 이미지 변수 설정 */
 #pre-quiz-screen { --screen-background-image: url('background1.jpg'); }
 #quiz-screen { --screen-background-image: url('background.jpg'); }
 
-/* 퀴즈 완료 시 #quiz-screen에 적용될 배경 클래스 - background2.jpg (필터 없음!) */
 #quiz-screen.quiz-finished-bg {
-    background-image: url('background2.jpg') !important; /* 이미지 직접 적용, 오버레이 제거 */
-    background-color: transparent !important; /* 배경색도 투명 */
+    background-image: url('background2.jpg') !important;
+    background-color: transparent !important;
 }
 
 
@@ -72,6 +68,8 @@ body {
 #employee-id-input {
     width: calc(100% - 40px);
     padding: 12px 20px;
+    /* 사번 입력 칸의 상단 마진 추가! */
+    margin-top: 110px; 
     margin-bottom: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -79,19 +77,18 @@ body {
     box-sizing: border-box;
 }
 
-/* 버튼 그룹 정렬을 위한 스타일 */
 .button-group {
-    display: flex; /* Flexbox로 가로 정렬 */
-    justify-content: center; /* 중앙 정렬 */
+    display: flex;
+    justify-content: center;
     align-items: center;
-    flex-wrap: nowrap; /* 버튼이 다음 줄로 넘어가지 않도록 강제! */
-    gap: 10px; /* 버튼 사이 간격 */
+    flex-wrap: nowrap;
+    gap: 10px;
     margin-top: 20px;
-    width: 100%; /* 부모 너비에 맞춤 */
+    width: 100%;
 }
 
 #question {
-    font-size: 26px;
+    font-size: 28px;
     margin-bottom: 30px;
     color: #2c3e50;
     min-height: 80px;
@@ -101,7 +98,7 @@ body {
     word-break: keep-all;
 }
 
-.buttons { /* 기존 O/X 버튼 그룹 */
+.buttons {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -113,16 +110,16 @@ body {
     background-color: #3498db;
     color: white;
     border: none;
-    padding: 12px 18px; /* 패딩을 더 줄였습니다! */
-    font-size: 18px; /* 폰트 사이즈도 약간 줄였습니다! */
+    padding: 12px 18px;
+    font-size: 18px;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     
-    flex-grow: 1; /* 남은 공간을 채우면서, */
-    flex-shrink: 1; /* 필요시 줄어들고, */
-    flex-basis: auto; /* 기본 크기는 내용에 따라 */
-    max-width: 180px; /* 개별 버튼의 최대 너비 제한 (너무 커지는 것 방지) */
+    flex-grow: 1;
+    flex-shrink: 1;
+    flex-basis: auto;
+    max-width: 180px;
 }
 
 .btn:hover {
@@ -165,20 +162,18 @@ body {
     margin-bottom: 20px;
 }
 
-/* 랭킹 섹션 (pre-quiz-screen 내부의 랭킹 섹션 포함) 공통 스타일 - 배경은 투명 */
 .ranking-section {
-    background-color: transparent; /* 이 섹션 자체는 배경 이미지를 갖지 않으므로 투명 */
-    box-shadow: none; /* 그림자 제거 (main-container가 가짐) */
+    background-color: transparent;
+    box-shadow: none;
 }
 
-/* 최종 랭킹 화면: 명예의 전당만 옅은 하늘색 (이미지 없음) */
 #ranking-section-final {
     background-color: #e0f2f7; /* 옅은 하늘색으로 채우기 */
     background-image: none;
     background-blend-mode: normal;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05); /* 명예의 전당만 그림자 추가 */
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
 
-    padding: 20px; /* 내부 여백 */
+    padding: 20px;
     margin-top: 30px;
     border-radius: 8px;
     max-width: 400px;
@@ -189,7 +184,7 @@ body {
     box-sizing: border-box;
     
     position: relative;
-    z-index: 2; /* 퀴즈 종료 배경 이미지 위에 오도록 */
+    z-index: 2;
 }
 
 

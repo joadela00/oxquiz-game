@@ -175,7 +175,7 @@ function loadQuiz() {
 
             if (timeLeft <= 0) {
                 clearInterval(timerId);
-                resultMessageElement.textContent = '시간 초과! EMOJI_0 오답입니다.';
+                resultMessageElement.textContent = '시간 초과!';
                 resultMessageElement.style.color = '#e74c3c';
                 oButton.disabled = true;
                 xButton.disabled = true;
@@ -302,11 +302,11 @@ function checkAnswer(userAnswer) {
 
     const currentQuiz = shuffledQuizData[currentQuizIndex];
     if (userAnswer === currentQuiz.answer) {
-        resultMessageElement.textContent = '정답입니다! EMOJI_1';
+        resultMessageElement.textContent = '정답입니다!';
         resultMessageElement.style.color = '#27ae60';
         score++;
     } else {
-        resultMessageElement.textContent = '오답입니다... EMOJI_2';
+        resultMessageElement.textContent = '오답입니다...';
         resultMessageElement.style.color = '#e74c3c';
     }
     scoreDisplay.textContent = `점수: ${score}`;
