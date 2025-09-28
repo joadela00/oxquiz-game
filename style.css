@@ -144,9 +144,9 @@ body {
     background-color: #c0392b;
 }
 
-#result-message { /* 최종 점수 줄의 마진 */
+#result-message { /* 최종 점수 줄의 마진  */
     font-size: 22px;
-    margin-top: 20px; 
+    margin-top: 5px; 
     font-weight: bold;
     min-height: 30px;
 }
@@ -169,7 +169,7 @@ body {
     box-shadow: none;
 }
 
-#ranking-section-final { /* 최종 랭킹 칸의 마진 */
+#ranking-section-final { /* 최종 랭킹 칸의 마진 (새눤님께서 15px로 조절하신 상태) */
     background-color: #e0f2f7; /* 옅은 하늘색으로 채우기 */
     background-image: none;
     background-blend-mode: normal;
@@ -339,7 +339,3 @@ body {
 #ranking-modal-close-btn:hover {
     background-color: #333;
 }
-
-
-
-
