@@ -33,7 +33,7 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     
-    background-image: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)), var(--screen-background-image) !important;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), var(--screen-background-image) !important;
 
     padding: 40px; /* 각 화면의 기본 패딩 */
     border-radius: inherit;
@@ -338,4 +338,5 @@ body {
 }
 #ranking-modal-close-btn:hover {
     background-color: #333;
+
 }
