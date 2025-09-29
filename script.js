@@ -83,7 +83,7 @@
         },
         {
             question: "업무전화에서 직원의 이름은 비공개대상이다",
-        분        answer: false
+                answer: false
         },
         {
             question: "모니터링은 아침 9시반부터 시작한다",
@@ -426,4 +426,5 @@
     quizScreen.style.display = 'none';
     rankingModalOverlay.style.display = 'none';
     fetchAndDisplayRankings(); // 초기 화면 로드 시에도 랭킹 표시
+
 
