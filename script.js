@@ -267,7 +267,7 @@
             questionElement.style.height = '0';
             questionElement.style.overflow = 'hidden';
 
-            resultMessageElement.textContent = `최종 점수: ${score} / 점, ${totalTimeTakenFormatted}초`;
+            resultMessageElement.textContent = `최종 점수: ${score} 점, ${totalTimeTakenFormatted}초`;
             resultMessageElement.style.color = '#333';
 
             oButton.style.display = 'none';
@@ -426,6 +426,7 @@
     quizScreen.style.display = 'none';
     rankingModalOverlay.style.display = 'none';
     fetchAndDisplayRankings(); // 초기 화면 로드 시에도 랭킹 표시
+
 
 
 
