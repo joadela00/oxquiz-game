@@ -153,7 +153,7 @@
 
     // ---------- 중요: Google Apps Script 웹 앱 URL을 여기에 붙여넣으세요! ----------
     // 새눤님께서 주신 올바른 URL로 이미 대체했습니다.
-    const APPS_SCRIPT_RANKING_API_URL = 'https://script.google.com/macros/s/AKfycbx5qF3QLHRC4dxh5az4tBtWlwGb60qCr76fBkSDIA6205s37yQY2N17ikcC0Ey1WcWuUA/exec';
+    const APPS_SCRIPT_RANKING_API_URL = 'https://script.google.com/macros/s/AKfycbwz0HrNIBy8Lip4ofJ4XIbhbR687RjSXFcybdiiuu07fgax5sG_Hx4J9AmKz91BHqouHQ/exec';
     // ----------------------------------------------------------------------------------
 
     function customAlert(title, message) {
@@ -426,3 +426,4 @@
     quizScreen.style.display = 'none';
     rankingModalOverlay.style.display = 'none';
     fetchAndDisplayRankings(); // 초기 화면 로드 시에도 랭킹 표시
+
