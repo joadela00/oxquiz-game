@@ -1,115 +1,116 @@
 /* 코드를 읽는 건 너무 야비해요 */
 
 const originalQuizData = [
-   {
-question: "모니터링은 평일 7일간 진행한다",
-answer: false
-},
-{
-question: "계속 벨이 울리면 끊어질때까지 기다린다",
-answer: false
-},
-{
-question: "전화를 끊고나면 바로 행지팀에 알려준다",
-answer: true
-},
-{
-question: "출근하면 시나리오를 켜놓는다",
-answer: true
-},
-{
-question: "첫인사는 '여보세요?'라고 한다",
-answer: false
-},
-{
-question: "나 하나쯤은 대충 받아도 끄떡 없다",
-answer: false
-},
-{
-question: "첫인사+끝인사는 45점을 차지한다",
-answer: true
-},
-{
-question: "친근하게 반말을 섞어도 된다",
-answer: false
-},
-{
-question: "돌려주기는 가급적 하지 않는다",
-answer: true
-},
-{
-question: "2차수신 시, 용무인지는 선택사항이다",
-answer: false
-},
-{
-question: "끝인사는 '네~'라고 짧게 한다",
-answer: false
-},
-{
-question: "첫인사는 발음이 중요하지 않다",
-answer: false
-},
-{
-question: "바쁘니까 고객보다 먼저 끊는다",
-answer: false
-},
-{
-question: "전화를 돌리면 보너스 점수를 받는다",
-answer: false
-},
-{
-question: "모니터링 전화냐고 반드시 되물어본다",
-answer: false
-},
-{
-question: "엉덩이를 떼면 이석을 누른다",
-answer: true
-},
-{
-question: "모니터링으로 표창을 받을 수 있다",
-answer: true
-},
-{
-question: "모든 질문은 시나리오대로만 한다",
-answer: true
-},
-{
-question: "2차수신보다 메모가 낫다",
-answer: true
-},
-{
-question: "2차수신자는 이름을 생략할 수 있다",
-answer: false
-},
-{
-question: "업무전화에서 직원의 이름은 비공개대상이다",
-answer: false
-},
-{
-question: "모니터링은 아침 9시반부터 시작한다",
-answer: true
-},
-{
-question: "팀원이 전화를 받는동안 큰소리로 응원전을 펼친다",
-answer: false
-},
-{
-question: "이 시기, 빈자리 이석을 눌러주면 국제법 위반이다",
-answer: false
-},
-{
-question: "당겨받기는 귀여운 막내가 담당한다",
-answer: false
-},
-{
-question: "전화를 망치면 행지팀엔 비밀로 한다",
-answer: false
-},
-{
-question: "점심시간에는 모니터링을 하지 않는다",
-answer: true
-}
+    {
+        question: "모니터링은 평일 7일간 진행한다",
+        answer: false
+    },
+    {
+        question: "계속 벨이 울리면 끊어질때까지 기다린다",
+        answer: false
+    },
+    {
+        question: "전화를 끊고나면 바로 행지팀에 알려준다",
+        answer: true
+    },
+    {
+        question: "출근하면 시나리오를 켜놓는다",
+        answer: true
+    },
+    {
+        question: "첫인사는 '여보세요?'라고 한다",
+        answer: false
+    },
+    {
+        question: "나 하나쯤은 대충 받아도 끄떡 없다",
+        answer: false
+    },
+    {
+        question: "첫인사+끝인사는 45점을 차지한다",
+        answer: true
+    },
+    {
+        question: "친근하게 반말을 섞어도 된다",
+        answer: false
+    },
+    {
+        question: "돌려주기는 가급적 하지 않는다",
+        answer: true
+    },
+    {
+        question: "2차수신 시, 용무인지는 선택사항이다",
+        answer: false
+    },
+    {
+        question: "끝인사는 '네~'라고 짧게 한다",
+        answer: false
+    },
+    {
+        question: "첫인사는 발음이 중요하지 않다",
+        answer: false
+    },
+    {
+        question: "바쁘니까 고객보다 먼저 끊는다",
+        answer: false
+    },
+    {
+        question: "전화를 돌리면 보너스 점수를 받는다",
+        answer: false
+    },
+    {
+        question: "모니터링 전화냐고 반드시 되물어본다",
+        answer: false
+    },
+    {
+        question: "엉덩이를 떼면 이석을 누른다",
+        answer: true
+    },
+    {
+        question: "모니터링으로 표창을 받을 수 있다",
+        answer: true
+    },
+    {
+        question: "모든 질문은 시나리오대로만 한다",
+        answer: true
+    },
+    {
+        question: "2차수신보다 메모가 낫다",
+        answer: true
+    },
+    {
+        question: "2차수신자는 이름을 생략할 수 있다",
+        answer: false
+    },
+    {
+        question: "업무전화에서 직원의 이름은 비공개대상이다",
+        answer: false
+    },
+    {
+        question: "모니터링은 아침 9시반부터 시작한다",
+        answer: true
+    },
+    {
+        question: "팀원이 전화를 받는동안 큰소리로 응원전을 펼친다",
+        answer: false
+    },
+    {
+        question: "이 시기, 빈자리 이석을 눌러주면 국제법 위반이다",
+        answer: false
+    },
+    {
+        question: "당겨받기는 귀여운 막내가 담당한다",
+        answer: false
+    },
+    {
+        question: "전화를 망치면 행지팀엔 비밀로 한다",
+        answer: false
+    },
+    {
+        question: "점심시간에는 모니터링을 하지 않는다",
+        answer: true
+    }
 ];
+
 
 let shuffledQuizData = [];
 let currentPlayerId = '';
@@ -150,6 +151,10 @@ let timerId;
 let quizStartTime;
 let quizEndTime;
 
+// ---------- 중요: Google Apps Script 웹 앱 URL을 여기에 붙여넣으세요! ----------
+const APPS_SCRIPT_RANKING_API_URL = 'https://script.google.com/macros/s/AKfycbx5qF3QLHRC4dxh5az4tBtWlwGb60qCr76fBkSDIA6205s37yQY2N17ikcC0Ey1WcWuUA/exec
+';
+
 function customAlert(title, message) {
     customAlertTitle.textContent = title;
     customAlertMessage.textContent = message;
@@ -176,21 +181,21 @@ function startQuizProcess() {
         return;
     }
 
+    // --- 사번 유효성 검사 로직 ---
     const sixDigitsPattern = /^\d{6}$/;
     const letterAndFiveDigitsPattern = /^[a-zA-Z]\d{5}$/;
 
-    // 두 패턴 중 하나라도 만족하면 유효함
     if (!(sixDigitsPattern.test(currentPlayerId) || letterAndFiveDigitsPattern.test(currentPlayerId))) {
         customAlert('사번 오류', '올바른 사번을 넣어주세요');
         return;
     }
-    // --- 여기까지 사번 유효성 검사 로직 다시 변경 ---
+    // --- 여기까지 사번 유효성 검사 로직 ---
 
     preQuizScreen.style.display = 'none';
     quizScreen.style.display = 'flex';
 
     const tempShuffled = shuffleArray([...originalQuizData]);
-    shuffledQuizData = tempShuffled.slice(0, 5);
+    shuffledQuizData = tempShuffled.slice(0, 5); // 항상 5문제로 고정
 
     currentQuizIndex = 0;
     score = 0;
@@ -203,8 +208,7 @@ function startQuizProcess() {
     questionCounterElement.style.display = 'block';
 
     rankingModalOverlay.style.display = 'none';
-    
-    // 퀴즈 시작 시 #quiz-screen의 배경을 기본 배경으로 설정 (quiz-finished-bg 클래스 제거)
+   
     quizScreen.classList.remove('quiz-finished-bg');
 
     loadQuiz();
@@ -220,7 +224,7 @@ function loadQuiz() {
 
     if (currentQuizIndex < shuffledQuizData.length) {
         const currentQuiz = shuffledQuizData[currentQuizIndex];
-        
+       
         questionElement.textContent = currentQuiz.question;
         scoreDisplay.textContent = `점수: ${score}`;
         timerElement.style.display = 'block';
@@ -258,13 +262,11 @@ function loadQuiz() {
         const totalTimeTakenMillis = quizEndTime - quizStartTime;
         const totalTimeTakenFormatted = (totalTimeTakenMillis / 1000).toFixed(2);
 
-        // "모든 문제를 다 풀었습니다!" 문구를 여기서 제거합니다.
-        questionElement.textContent = ''; 
-        // 텍스트를 비웠으니, h1이 공간을 차지하지 않도록 추가로 조정
+        questionElement.textContent = '';
         questionElement.style.height = '0';
         questionElement.style.overflow = 'hidden';
 
-        resultMessageElement.textContent = `최종 점수: ${score} 점, ${totalTimeTakenFormatted}초`;
+        resultMessageElement.textContent = `최종 점수: ${score} / 점, ${totalTimeTakenFormatted}초`;
         resultMessageElement.style.color = '#333';
 
         oButton.style.display = 'none';
@@ -272,55 +274,83 @@ function loadQuiz() {
         timerElement.style.display = 'none';
         scoreDisplay.style.display = 'none';
         questionCounterElement.style.display = 'none';
-        
-        // 퀴즈 종료 시 #quiz-screen의 배경을 background2.jpg로 변경 (class 추가)
+       
         quizScreen.classList.add('quiz-finished-bg');
 
-        saveRanking(currentPlayerId, score, totalTimeTakenMillis);
+        // Google Forms로 데이터 전송 (기존 방식 유지)
+        const googleFormBaseUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSdnP979PWZO0YLJBS9QXwbjdPL6efLNCZjFLVvepVS3cd8GIA/formResponse';
+        const entryIdEmployeeId = 'entry.886611971';     // 새눤님의 사번 entry ID
+        const entryIdScore = 'entry.1024204280';               // 새눤님의 점수 entry ID
+        const entryIdTime = 'entry.1174827518';                 // 새눤님의 소요 시간 entry ID
 
-        displayRanking(finalRankingList);
+        const formData = new FormData();
+        formData.append(entryIdEmployeeId, currentPlayerId);
+        formData.append(entryIdScore, score);
+        formData.append(entryIdTime, totalTimeTakenMillis);
+
+        fetch(googleFormBaseUrl, {
+            method: 'POST',
+            body: formData,
+            mode: 'no-cors'
+        })
+        .then(response => {
+            console.log('Google Forms로 데이터 전송 요청 완료');
+            // 폼 전송 후 바로 랭킹을 로드하여 업데이트된 내용이 보이도록 함.
+            fetchAndDisplayRankings();
+        })
+        .catch(error => {
+            console.error('Google Forms 데이터 전송 실패:', error);
+            fetchAndDisplayRankings(); // 에러 나더라도 랭킹은 표시
+        });
+
         rankingSectionFinal.style.position = 'relative';
         rankingSectionFinal.style.zIndex = '3';
         rankingSectionFinal.style.display = 'block';
     }
 }
 
-function saveRanking(employeeId, score, timeTakenMillis) {
-    let rankings = JSON.parse(localStorage.getItem('oxQuizRankings')) || [];
-    const newEntry = { employeeId, score, timeTakenMillis };
-
-    const existingEntryIndex = rankings.findIndex(entry => entry.employeeId === employeeId);
-
-    if (existingEntryIndex > -1) {
-        const existingEntry = rankings[existingEntryIndex];
-        if (newEntry.score > existingEntry.score ||
-           (newEntry.score === existingEntry.score && newEntry.timeTakenMillis < existingEntry.timeTakenMillis)) {
-            rankings[existingEntryIndex] = newEntry;
+// ----------------------------------------------------
+// 변경된 랭킹 데이터를 가져와서 표시하는 함수 (LocalStorage 제거)
+async function fetchAndDisplayRankings() {
+    try {
+        const response = await fetch(APPS_SCRIPT_RANKING_API_URL);
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
-    } else {
-        rankings.push(newEntry);
+        const rankings = await response.json();
+       
+        if (rankings.error) {
+            console.error("Apps Script Error:", rankings.error);
+            displayRankingsToDOM([], finalRankingList, true); // 에러 발생 시 빈 랭킹 리스트 표시
+            displayRankingsToDOM([], initialRankingList, true); // 팝업 랭킹도
+            return;
+        }
+
+        displayRankingsToDOM(rankings, finalRankingList);
+        displayRankingsToDOM(rankings, initialRankingList);
+
+    } catch (error) {
+        console.error('랭킹 데이터를 가져오는데 실패했습니다:', error);
+        displayRankingsToDOM([], finalRankingList, true); // 에러 발생 시 빈 랭킹 리스트 표시
+        displayRankingsToDOM([], initialRankingList, true); // 팝업 랭킹도
     }
-
-    rankings.sort((a, b) => {
-        if (b.score !== a.score) {
-            return b.score - a.score;
-        }
-        return a.timeTakenMillis - b.timeTakenMillis;
-    });
-
-    localStorage.setItem('oxQuizRankings', JSON.stringify(rankings));
 }
 
-function displayRanking(targetListElement) {
-    const rankings = JSON.parse(localStorage.getItem('oxQuizRankings')) || [];
-    targetListElement.innerHTML = '';
+// DOM에 랭킹을 실제로 표시하는 유틸리티 함수
+function displayRankingsToDOM(rankings, targetListElement, showError = false) {
+    targetListElement.innerHTML = ''; // 기존 내용 지우기
+
+    if (showError) {
+        targetListElement.innerHTML = '<li>랭킹을 불러오는데 실패했습니다.</li>';
+        return;
+    }
 
     if (rankings.length === 0) {
         targetListElement.innerHTML = '<li>첫 기록을 남겨보세요!</li>';
         return;
     }
 
-    const limitedRankings = rankings.slice(0, 10);
+    const limitedRankings = rankings.slice(0, 10); // 최대 10개만 표시
 
     limitedRankings.forEach((entry, index) => {
         const timeTakenFormatted = (entry.timeTakenMillis / 1000).toFixed(2);
@@ -333,13 +363,14 @@ function displayRanking(targetListElement) {
         targetListElement.appendChild(listItem);
     });
 }
+// ----------------------------------------------------
 
 startQuizButton.addEventListener('click', startQuizProcess);
 oButton.addEventListener('click', () => checkAnswer(true));
 xButton.addEventListener('click', () => checkAnswer(false));
 
 showInitialRankingButton.addEventListener('click', () => {
-    displayRanking(initialRankingList);
+    fetchAndDisplayRankings(); // 팝업창 열 때 랭킹 데이터를 새로 가져옵니다.
     rankingModalOverlay.style.display = 'flex';
 });
 
@@ -351,16 +382,18 @@ restartButton.addEventListener('click', () => {
     preQuizScreen.style.display = 'flex';
     quizScreen.style.display = 'none';
     employeeIdInput.value = '';
-    
-    // 최종 화면에서 설정된 스타일 초기화
-    questionElement.style.height = ''; // 높이 초기화
-    questionElement.style.overflow = ''; // overflow 초기화
-    questionElement.textContent = ''; // 텍스트 초기화 (혹시 모를 잔여 텍스트)
+   
+    questionElement.style.height = '';
+    questionElement.style.overflow = '';
+    questionElement.textContent = '';
 
     rankingModalOverlay.style.display = 'none';
     quizScreen.classList.remove('quiz-finished-bg');
     rankingSectionFinal.style.position = '';
     rankingSectionFinal.style.zIndex = '';
+    rankingSectionFinal.style.display = 'none'; // 최종 랭킹 화면 숨기기
+
+    fetchAndDisplayRankings(); // 초기 화면 복귀 시에도 랭킹 업데이트
 });
 
 function checkAnswer(userAnswer) {
@@ -385,7 +418,8 @@ function checkAnswer(userAnswer) {
     }, 2000);
 }
 
+// 웹사이트 로드 시 초기 랭킹을 가져와 표시합니다.
 preQuizScreen.style.display = 'flex';
 quizScreen.style.display = 'none';
-
 rankingModalOverlay.style.display = 'none';
+fetchAndDisplayRankings(); // 초기 화면 로드 시에도 랭킹 표시
