@@ -152,8 +152,7 @@ let quizStartTime;
 let quizEndTime;
 
 // ---------- 중요: Google Apps Script 웹 앱 URL을 여기에 붙여넣으세요! ----------
-const APPS_SCRIPT_RANKING_API_URL = 'https://script.google.com/macros/s/AKfycbx5qF3QLHRC4dxh5az4tBtWlwGb60qCr76fBkSDIA6205s37yQY2N17ikcC0Ey1WcWuUA/exec
-';
+const APPS_SCRIPT_RANKING_API_URL = 'https://script.google.com/macros/s/AKfycbx5qF3QLHRC4dxh5az4tBtWlwGb60qCr76fBkSDIA6205s37yQY2N17ikcC0Ey1WcWuUA/exec';
 
 function customAlert(title, message) {
     customAlertTitle.textContent = title;
@@ -423,3 +422,4 @@ preQuizScreen.style.display = 'flex';
 quizScreen.style.display = 'none';
 rankingModalOverlay.style.display = 'none';
 fetchAndDisplayRankings(); // 초기 화면 로드 시에도 랭킹 표시
+
