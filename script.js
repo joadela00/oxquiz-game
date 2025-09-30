@@ -7,10 +7,6 @@ const originalQuizData = [
         answer: false
     },
     {
-        question: "모니터링은 평일 6일간 진행한다",
-        answer: true
-    },
-    {
         question: "계속 벨이 울리면 끊어질때까지 기다린다",
         answer: false
     },
@@ -79,11 +75,11 @@ const originalQuizData = [
         answer: true
     },
     {
-        question: "2차수신은 무조건 감점이다",
-        answer: false
+        question: "2차수신보다 메모가 낫다",
+        answer: true
     },
     {
-        question: "2차 수신자는 이름을 생략할 수 있다",
+        question: "2차수신자는 이름을 생략할 수 있다",
         answer: false
     },
     {
@@ -156,8 +152,8 @@ let timerId;
 let quizStartTime;
 let quizEndTime;
 
-
-const APPS_SCRIPT_RANKING_API_URL = 'https://script.google.com/macros/s/AKfycbw77r_uOi034w_P6TlguqLfpTbSzCT4FzKuqgWatWeLLkDNJY8mtAPvab9hbrm-moyjpw/exec'; 
+// ---------- 중요: Google Apps Script 웹 앱 URL을 여기에 붙여넣으세요! ----------
+const APPS_SCRIPT_RANKING_API_URL = 'https://script.google.com/macros/s/AKfycbz6yr3pxzXdPGSg8mHmo6FSYrrAs68LT4G0_EbdhyaUGsb0EQSpHrJrjMF1K3X82SId4A/exec';
 // ----------------------------------------------------------------------------------
 
 function customAlert(title, message) {
@@ -213,8 +209,14 @@ function startQuizProcess() {
     questionCounterElement.style.display = 'block';
 
     rankingModalOverlay.style.display = 'none';
-    
+   
     quizScreen.classList.remove('quiz-finished-bg');
+
+    // 퀴즈 시작 시 resultMessageElement를 완전히 초기화 (내용 비우고 투명하게)
+    resultMessageElement.textContent = '';
+    resultMessageElement.style.opacity = '0'; // 투명하게 만들어서 보이지 않게 함
+    resultMessageElement.classList.remove('quiz-feedback-margin'); // 혹시 모를 잔여 클래스 제거
+
 
     loadQuiz();
 }
@@ -222,20 +224,23 @@ function startQuizProcess() {
 function loadQuiz() {
     clearInterval(timerId);
 
+    // 새 문제 로드 시 이전 메시지 비우고 투명하게 (공간은 유지)
     resultMessageElement.textContent = '';
+    resultMessageElement.style.opacity = '0'; // 투명하게 만들어서 보이지 않게 함
+    resultMessageElement.classList.remove('quiz-feedback-margin'); // 퀴즈 중 피드백 마진 클래스 제거
+
     oButton.disabled = false;
     xButton.disabled = false;
     timerElement.style.color = '#333';
 
     if (currentQuizIndex < shuffledQuizData.length) {
         const currentQuiz = shuffledQuizData[currentQuizIndex];
-        
+       
         questionElement.textContent = currentQuiz.question;
         scoreDisplay.textContent = `점수: ${score}`;
         timerElement.style.display = 'block';
         questionCounterElement.textContent = `${currentQuizIndex + 1} / ${shuffledQuizData.length} 문제`;
-        questionElement.style.marginTop = '20px';
-
+        questionElement.style.marginTop = '20px'; // 질문 상단 마진은 유지
 
         timeLeft = 10;
         timerElement.textContent = `남은 시간: ${timeLeft}초`;
@@ -252,9 +257,13 @@ function loadQuiz() {
                 clearInterval(timerId);
                 resultMessageElement.textContent = '시간 초과!';
                 resultMessageElement.style.color = '#e74c3c';
+                resultMessageElement.style.opacity = '1'; // 메시지 보이게 함
                 oButton.disabled = true;
                 xButton.disabled = true;
                 scoreDisplay.textContent = `점수: ${score}`;
+
+                // 퀴즈 중 피드백 메시지이므로 클래스 추가! (마진 조절)
+                resultMessageElement.classList.add('quiz-feedback-margin');
 
                 setTimeout(() => {
                     currentQuizIndex++;
@@ -262,16 +271,20 @@ function loadQuiz() {
                 }, 2000);
             }
         }, 1000);
-    } else {
+    } else { // 퀴즈 종료 시
         quizEndTime = new Date().getTime();
         const totalTimeTakenMillis = quizEndTime - quizStartTime;
         const totalTimeTakenFormatted = (totalTimeTakenMillis / 1000).toFixed(2);
 
-        questionElement.textContent = ''; 
-        questionElement.style.height = '0';
+        // 최종 점수 메시지이므로 퀴즈 피드백 마진 클래스는 제거! (기본 마진 사용)
+        resultMessageElement.classList.remove('quiz-feedback-margin');
+        resultMessageElement.style.opacity = '1'; // 최종 점수 메시지 보이게 함 (이때는 기본 마진 70px 적용)
+
+        questionElement.textContent = '';
+        questionElement.style.height = '0'; // 질문 공간은 필요 없으므로 완전히 숨김
         questionElement.style.overflow = 'hidden';
 
-        resultMessageElement.textContent = `점수: ${score}점(${totalTimeTakenFormatted}초)`;
+        resultMessageElement.textContent = `최종: ${score}점 (${totalTimeTakenFormatted}초)`;
         resultMessageElement.style.color = '#333';
 
         oButton.style.display = 'none';
@@ -279,14 +292,14 @@ function loadQuiz() {
         timerElement.style.display = 'none';
         scoreDisplay.style.display = 'none';
         questionCounterElement.style.display = 'none';
-        
+       
         quizScreen.classList.add('quiz-finished-bg');
 
         // Google Forms로 데이터 전송 (기존 방식 유지)
         const googleFormBaseUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSdnP979PWZO0YLJBS9QXwbjdPL6efLNCZjFLVvepVS3cd8GIA/formResponse';
-        const entryIdEmployeeId = 'entry.886611971';     // 사번 entry ID
-        const entryIdScore = 'entry.1024204280';               // 점수 entry ID
-        const entryIdTime = 'entry.1174827518';                 // 소요 시간 entry ID
+        const entryIdEmployeeId = 'entry.886611971';     // 새눤님의 사번 entry ID
+        const entryIdScore = 'entry.1024204280';               // 새눤님의 점수 entry ID
+        const entryIdTime = 'entry.1174827518';                 // 새눤님의 소요 시간 entry ID
 
         const formData = new FormData();
         formData.append(entryIdEmployeeId, currentPlayerId);
@@ -301,7 +314,7 @@ function loadQuiz() {
         .then(response => {
             console.log('Google Forms로 데이터 전송 요청 완료');
             // 폼 전송 후 바로 랭킹을 로드하여 업데이트된 내용이 보이도록 함.
-            fetchAndDisplayRankings(); 
+            fetchAndDisplayRankings();
         })
         .catch(error => {
             console.error('Google Forms 데이터 전송 실패:', error);
@@ -325,7 +338,7 @@ async function fetchAndDisplayRankings() {
             throw new Error(`HTTP error! status: ${response.status}, message: ${errorData.error || response.statusText}`);
         }
         const rankings = await response.json();
-        
+       
         if (rankings.error) {
             console.error("Apps Script Error:", rankings.error);
             displayRankingsToDOM([], finalRankingList, true); // 에러 발생 시 빈 랭킹 리스트 표시
@@ -391,16 +404,22 @@ restartButton.addEventListener('click', () => {
     preQuizScreen.style.display = 'flex';
     quizScreen.style.display = 'none';
     employeeIdInput.value = '';
-    
-    questionElement.style.height = ''; 
-    questionElement.style.overflow = ''; 
-    questionElement.textContent = ''; 
+   
+    questionElement.style.height = ''; // 질문 공간 복구
+    questionElement.style.overflow = ''; // overflow도 복구
+    questionElement.textContent = ''; // 텍스트만 비움
 
     rankingModalOverlay.style.display = 'none';
     quizScreen.classList.remove('quiz-finished-bg');
     rankingSectionFinal.style.position = '';
     rankingSectionFinal.style.zIndex = '';
     rankingSectionFinal.style.display = 'none'; // 최종 랭킹 화면 숨기기
+
+    // resultMessageElement 초기화
+    resultMessageElement.textContent = '';
+    resultMessageElement.style.opacity = '0';
+    resultMessageElement.classList.remove('quiz-feedback-margin');
+
 
     fetchAndDisplayRankings(); // 초기 화면 복귀 시에도 랭킹 업데이트
 });
@@ -412,14 +431,19 @@ function checkAnswer(userAnswer) {
 
     const currentQuiz = shuffledQuizData[currentQuizIndex];
     if (userAnswer === currentQuiz.answer) {
-        resultMessageElement.textContent = '💚';
+        resultMessageElement.textContent = '정답입니다!';
         resultMessageElement.style.color = '#27ae60';
         score++;
     } else {
-        resultMessageElement.textContent = '💔';
+        resultMessageElement.textContent = '오답입니다.';
         resultMessageElement.style.color = '#e74c3c';
     }
+    resultMessageElement.style.opacity = '1'; // 메시지 보이게 함
+
     scoreDisplay.textContent = `점수: ${score}`;
+
+    // 퀴즈 중 피드백 메시지이므로 클래스 추가! (마진 조절)
+    resultMessageElement.classList.add('quiz-feedback-margin');
 
     setTimeout(() => {
         currentQuizIndex++;
@@ -431,4 +455,10 @@ function checkAnswer(userAnswer) {
 preQuizScreen.style.display = 'flex';
 quizScreen.style.display = 'none';
 rankingModalOverlay.style.display = 'none';
+
+// 웹사이트 로드 시 resultMessageElement 초기화
+resultMessageElement.textContent = '';
+resultMessageElement.style.opacity = '0';
+resultMessageElement.classList.remove('quiz-feedback-margin');
+
 fetchAndDisplayRankings(); // 초기 화면 로드 시에도 랭킹 표시
