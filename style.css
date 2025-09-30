@@ -261,7 +261,7 @@ body {
 .question-counter {
     font-size: 18px;
     color: #888;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     font-weight: bold;
 }
 
@@ -405,7 +405,7 @@ body {
 #quiz-screen.quiz-finished-bg {
     background-image: url('background2.jpeg') !important; /* 이미지 직접 적용, 오버레이 제거 */
     background-color: transparent !important; /* 배경색도 투명 */
-    padding-top: 100px; /* 최종 화면 전체 콘텐츠의 상단 여백 (새눤님 선호 상태 유지) */
+    padding-top: 130px; /* 최종 화면 전체 콘텐츠의 상단 여백 (새눤님 선호 상태 유지) */
     justify-content: flex-start; /* 최종 화면 전체 콘텐츠를 위에서부터 정렬 (새눤님 선호 상태 유지) */
 }
 
