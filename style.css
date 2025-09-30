@@ -510,7 +510,7 @@ body {
 
 /* 퀴즈 중 '정답/오답' 메시지에만 적용되는 클래스 (CSS 우선순위 해결) */
 #result-message.quiz-feedback-margin {
-    margin-top: 50px; /* O/X 버튼과 '정답/오답' 메시지 사이의 간격 */
+    margin-top: 30px; /* O/X 버튼과 '정답/오답' 메시지 사이의 간격 */
 }
 
 #score-display {
