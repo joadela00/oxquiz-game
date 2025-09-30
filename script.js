@@ -7,6 +7,10 @@ const originalQuizData = [
         answer: false
     },
     {
+        question: "모니터링은 평일 6일간 진행한다",
+        answer: true
+    },
+    {
         question: "계속 벨이 울리면 끊어질때까지 기다린다",
         answer: false
     },
@@ -75,11 +79,11 @@ const originalQuizData = [
         answer: true
     },
     {
-        question: "2차수신보다 메모가 낫다",
-        answer: true
+        question: "2차수신은 무조건 감점이다",
+        answer: false
     },
     {
-        question: "2차수신자는 이름을 생략할 수 있다",
+        question: "2차 수신자는 이름을 생략할 수 있다",
         answer: false
     },
     {
@@ -153,7 +157,7 @@ let quizStartTime;
 let quizEndTime;
 
 
-const APPS_SCRIPT_RANKING_API_URL = 'https://script.google.com/macros/s/AKfycbwvYPA7vwpMCKLXWfcnIMk8mibfeSvJFxP9VQfgQmXuPxSWOiFDAFISNYWxFPvRYHjyrg/exec'; 
+const APPS_SCRIPT_RANKING_API_URL = 'https://script.google.com/macros/s/AKfycbw77r_uOi034w_P6TlguqLfpTbSzCT4FzKuqgWatWeLLkDNJY8mtAPvab9hbrm-moyjpw/exec'; 
 // ----------------------------------------------------------------------------------
 
 function customAlert(title, message) {
@@ -267,7 +271,7 @@ function loadQuiz() {
         questionElement.style.height = '0';
         questionElement.style.overflow = 'hidden';
 
-        resultMessageElement.textContent = `최종 점수: ${score} 점, ${totalTimeTakenFormatted}초`;
+        resultMessageElement.textContent = `최종 점수: ${score} 점(${totalTimeTakenFormatted}초)`;
         resultMessageElement.style.color = '#333';
 
         oButton.style.display = 'none';
@@ -363,7 +367,7 @@ function displayRankingsToDOM(rankings, targetListElement, showError = false) {
         listItem.innerHTML = `
             <span class="rank-number">${index + 1}위</span>
             <span class="player-info">${entry.affiliation} | ${entry.employeeId}</span>
-            <span class="score-time">${entry.score}점 / ${timeTakenFormatted}초</span>
+            <span class="score-time">${entry.score}점(${timeTakenFormatted}초)</span>
         `;
         targetListElement.appendChild(listItem);
     });
@@ -408,11 +412,11 @@ function checkAnswer(userAnswer) {
 
     const currentQuiz = shuffledQuizData[currentQuizIndex];
     if (userAnswer === currentQuiz.answer) {
-        resultMessageElement.textContent = '정답입니다!';
+        resultMessageElement.textContent = '💚';
         resultMessageElement.style.color = '#27ae60';
         score++;
     } else {
-        resultMessageElement.textContent = '오답입니다.';
+        resultMessageElement.textContent = '💔';
         resultMessageElement.style.color = '#e74c3c';
     }
     scoreDisplay.textContent = `점수: ${score}`;
