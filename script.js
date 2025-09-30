@@ -1,3 +1,119 @@
+
+대화
+J
+joadela
+5:33 PM
+?
+I
+iPad
+5:49 PM
+// ====== 이 5가지 변수 값만 새눤님의 Sheets 정보에 맞게 정확히 수정해 주세요! ======
+const SPREADSHEET_ID = '여기에_새눤님_Google_Sheets_ID를_붙여넣으세요'; 
+const QUIZ_RESULT_SHEET_NAME = '시트1'; // 퀴즈 결과가 저장되는 시트 이름 (예: '시트1', 'Sheet1', '퀴즈 결과')
+const AFFILIATION_SHEET_NAME = '소속 정보'; // 새로 만든 '소속 정보' 시트 이름!
+// --- 아래는 Google Sheets 첫 번째 행(헤더)에 있는 실제 컬럼명과 일치해야 합니다. ---
+const EMPLOYEE_ID_COL_NAME = '사번';
+const SCORE_COL_NAME = '점수';
+const TIME_COL_NAME = '소요 시간 (밀리초)';
+const AFFILIATION_COL_NAME = '소속'; // '소속 정보' 시트의 소속 컬럼 이름!
+// ==============================================================================
+
+
+function doGet(e) {
+  try {
+    const spreadsheet = SpreadsheetApp.openById(SPREADSHEET_ID);
+    
+    // 1. 소속 정보 시트에서 데이터 가져오기 (사번 -> 소속 맵 생성)
+    const affiliationSheet = spreadsheet.getSheetByName(AFFILIATION_SHEET_NAME);
+    const affiliationMap = {}; 
+
+    if (affiliationSheet) {
+      const affRange = affiliationSheet.getDataRange();
+      const affValues = affRange.getValues();
+      if (affValues.length > 1) { // 헤더(첫 행) 제외
+        const affHeaders = affValues[0];
+        const affIdColIndex = affHeaders.indexOf(EMPLOYEE_ID_COL_NAME);
+        const affNameColIndex = affHeaders.indexOf(AFFILIATION_COL_NAME);
+        
+        for (let i = 1; i < affValues.length; i++) {
+          const empId = String(affValues[i][affIdColIndex]).trim();
+          const affName = String(affValues[i][affNameColIndex]).trim();
+          if (empId) { 
+            affiliationMap[empId] = affName;
+          }
+        }
+      }
+    }
+    
+    // 2. 퀴즈 결과 시트에서 데이터 가져오기 및 처리
+    const quizResultSheet = spreadsheet.getSheetByName(QUIZ_RESULT_SHEET_NAME);
+    
+    if (!quizResultSheet) {
+      return ContentService.createTextOutput(JSON.stringify({ error: `Quiz result sheet not found: ${QUIZ_RESULT_SHEET_NAME}` }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+
+    const quizRange = quizResultSheet.getDataRange();
+    const quizValues = quizRange.getValues();
+
+    if (quizValues.length < 1) {
+      return ContentService.createTextOutput(JSON.stringify({ error: "No quiz data found in the sheet." }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+
+    const headers = quizValues[0]; // 퀴즈 결과 시트의 헤더
+    const data = quizValues.slice(1); // 퀴즈 결과 데이터 (헤더 제외)
+
+    const parsedData = data.map(row => {
+      const employeeIdCol = headers.indexOf(EMPLOYEE_ID_COL_NAME);
+      const scoreCol = headers.indexOf(SCORE_COL_NAME);
+      const timeCol = headers.indexOf(TIME_COL_NAME);
+
+      const employeeId = row[employeeIdCol] ? String(row[employeeIdCol]).trim() : 'Unknown';
+      const score = row[scoreCol] ? parseInt(row[scoreCol], 10) : 0;
+      const timeTakenMillis = row[timeCol] ? parseInt(row[timeCol], 10) : 999999999;
+      
+      // 소속 정보 추가!
+      const affiliation = affiliationMap[employeeId] || '소속 없음'; 
+      
+      return { employeeId, affiliation, score, timeTakenMillis };
+    });
+    
+    // 사번별 최고 기록만 남기기
+    const uniqueRankings = {};
+    parsedData.forEach(entry => {
+      if (!uniqueRankings[entry.employeeId] || 
+          (entry.score > uniqueRankings[entry.employeeId].score) ||
+          (entry.score === uniqueRankings[entry.employeeId].score && entry.timeTakenMillis < uniqueRankings[entry.employeeId].timeTakenMillis)) {
+        uniqueRankings[entry.employeeId] = entry;
+      }
+    });
+
+    // 랭킹 정렬 (점수 내림차순, 시간이 같으면 시간 오름차순)
+    const sortedRankings = Object.values(uniqueRankings).sort((a, b) => {
+      if (b.score !== a.score) {
+        return b.score - a.score; 
+      }
+      return a.timeTakenMillis - b.timeTakenMillis;
+    });
+    
+    // 최종 랭킹 데이터를 JSON 형태로 반환
+    return ContentService.createTextOutput(JSON.stringify(sortedRankings))
+      .setMimeType(ContentService.MimeType.JSON);
+
+  } catch (error) {
+    Logger.log(`Error in doGet: ${error.message}`);
+    return ContentService.createTextOutput(JSON.stringify({ error: error.message }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+J
+joadela
+5:56 PM
+https://script.google.com/macros/s/AKfycbzcGK20W23H9hxaJXLyC19N31X9cdvyLCi2PZ5B215MPJlcyh0yXdNeuUOuTUnUZmMo4w/exec
+I
+iPad
+5:57 PM
 /* 코드를 읽는 건 너무 야비해요 */
 
 const originalQuizData = [
@@ -428,4 +544,3 @@ preQuizScreen.style.display = 'flex';
 quizScreen.style.display = 'none';
 rankingModalOverlay.style.display = 'none';
 fetchAndDisplayRankings(); // 초기 화면 로드 시에도 랭킹 표시
-
