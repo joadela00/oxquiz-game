@@ -71,7 +71,7 @@ body {
 #employee-id-input {
     width: calc(100% - 40px);
     padding: 12px 20px;
-    margin-top: 160px; /* 사번 입력 칸의 상단 마진 */
+    margin-top: 180px; /* 사번 입력 칸의 상단 마진 */
     margin-bottom: 20px;
     border: 1px solid #ddd;
     border-radius: 5px;
@@ -344,6 +344,7 @@ body {
     background-color: #333;
 
 }
+
 
 
 
