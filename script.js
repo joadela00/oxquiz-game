@@ -7,6 +7,10 @@ const originalQuizData = [
         answer: false
     },
     {
+        question: "모니터링은 평일 6일간 진행한다",
+        answer: true
+    },
+    {
         question: "계속 벨이 울리면 끊어질때까지 기다린다",
         answer: false
     },
@@ -75,8 +79,8 @@ const originalQuizData = [
         answer: true
     },
     {
-        question: "2차수신보다 메모가 낫다",
-        answer: true
+        question: "전화를 돌려주면 뒷사람만 평가받는다",
+        answer: false
     },
     {
         question: "2차수신자는 이름을 생략할 수 있다",
@@ -95,11 +99,11 @@ const originalQuizData = [
         answer: false
     },
     {
-        question: "이 시기, 빈자리 이석을 눌러주면 국제법 위반이다",
+        question: "빈자리 이석을 눌러주면 국제법 위반이다",
         answer: false
     },
     {
-        question: "당겨받기는 귀여운 막내가 담당한다",
+        question: "당겨받기는 귀여운 막내만 담당한다",
         answer: false
     },
     {
