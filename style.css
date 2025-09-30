@@ -33,7 +33,7 @@ body {
     background-position: center 30%;
     background-repeat: no-repeat;
     
-    background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), var(--screen-background-image) !important;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.3)), var(--screen-background-image) !important;
 
     padding: 40px; /* 각 화면의 기본 패딩 */
     border-radius: inherit;
@@ -105,7 +105,7 @@ body {
     justify-content: center;
     align-items: center;
     margin-bottom: 20px;
-    gap: 60px;
+    gap: 50px;
 }
 
 .btn {
@@ -149,7 +149,7 @@ body {
 }
 
 #result-message { /* 최종 점수 줄의 마진  */
-    font-size: 28px;
+    font-size: 26px;
     margin-top: 5px; 
     font-weight: bold;
     min-height: 30px;
@@ -162,7 +162,7 @@ body {
 }
 
 .timer-display {
-    font-size: 24px;
+    font-size: 22px;
     font-weight: bold;
     color: #333;
     margin-bottom: 20px;
@@ -212,7 +212,7 @@ body {
     background-color: rgba(255, 255, 255, 0.8);
     padding: 12px 15px;
     border-bottom: 1px solid rgba(238, 238, 238, 0.8);
-    font-size: 14px;
+    font-size: 12px;
     color: #555;
     display: flex;
     justify-content: space-between;

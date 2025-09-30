@@ -271,7 +271,7 @@ function loadQuiz() {
         questionElement.style.height = '0';
         questionElement.style.overflow = 'hidden';
 
-        resultMessageElement.textContent = `최종 점수: ${score}점(${totalTimeTakenFormatted}초)`;
+        resultMessageElement.textContent = `점수: ${score}점(${totalTimeTakenFormatted}초)`;
         resultMessageElement.style.color = '#333';
 
         oButton.style.display = 'none';
@@ -366,7 +366,7 @@ function displayRankingsToDOM(rankings, targetListElement, showError = false) {
         // 여기! player-info span 태그 안에 affiliation(소속)과 employeeId(사번)을 함께 표시합니다.
         listItem.innerHTML = `
             <span class="rank-number">${index + 1}위</span>
-            <span class="player-info">${entry.affiliation} | ${entry.employeeId}</span>
+            <span class="player-info">${entry.affiliation} ${entry.employeeId}</span>
             <span class="score-time">${entry.score}점(${timeTakenFormatted}초)</span>
         `;
         targetListElement.appendChild(listItem);
