@@ -271,7 +271,7 @@ function loadQuiz() {
         questionElement.style.height = '0';
         questionElement.style.overflow = 'hidden';
 
-        resultMessageElement.textContent = `최종 점수: ${score} 점(${totalTimeTakenFormatted}초)`;
+        resultMessageElement.textContent = `최종 점수: ${score}점(${totalTimeTakenFormatted}초)`;
         resultMessageElement.style.color = '#333';
 
         oButton.style.display = 'none';
