@@ -435,11 +435,11 @@ function checkAnswer(userAnswer) {
 
     const currentQuiz = shuffledQuizData[currentQuizIndex];
     if (userAnswer === currentQuiz.answer) {
-        resultMessageElement.textContent = '정답입니다!';
+        resultMessageElement.textContent = '💚💚💚';
         resultMessageElement.style.color = '#27ae60';
         score++;
     } else {
-        resultMessageElement.textContent = '오답입니다.';
+        resultMessageElement.textContent = '💔';
         resultMessageElement.style.color = '#e74c3c';
     }
     resultMessageElement.style.opacity = '1'; // 메시지 보이게 함
