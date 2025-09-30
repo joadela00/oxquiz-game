@@ -1,3 +1,6 @@
+
+/* 코드를 읽는 건 너무 야비해요 */
+
 const originalQuizData = [
     {
         question: "모니터링은 평일 7일간 진행한다",
@@ -149,9 +152,8 @@ let timerId;
 let quizStartTime;
 let quizEndTime;
 
-// ---------- 중요: Google Apps Script 웹 앱 URL을 여기에 붙여넣으세요! ----------
-// 새눤님께서 이전 에러 수정하실 때 올바른 URL로 대체하셨습니다.
-const APPS_SCRIPT_RANKING_API_URL = 'https://script.google.com/macros/s/AKfycbx5qF3QLHRC4dxh5az4tBtWlwGb60qCr76fBkSDIA6205s37yQY2N17ikcC0Ey1WcWuUA/exec'; 
+
+const APPS_SCRIPT_RANKING_API_URL = 'https://script.google.com/macros/s/AKfycbwvYPA7vwpMCKLXWfcnIMk8mibfeSvJFxP9VQfgQmXuPxSWOiFDAFISNYWxFPvRYHjyrg/exec'; 
 // ----------------------------------------------------------------------------------
 
 function customAlert(title, message) {
@@ -265,7 +267,7 @@ function loadQuiz() {
         questionElement.style.height = '0';
         questionElement.style.overflow = 'hidden';
 
-        resultMessageElement.textContent = `최종 점수: ${score} / 점, ${totalTimeTakenFormatted}초`;
+        resultMessageElement.textContent = `최종 점수: ${score} 점, ${totalTimeTakenFormatted}초`;
         resultMessageElement.style.color = '#333';
 
         oButton.style.display = 'none';
@@ -278,9 +280,9 @@ function loadQuiz() {
 
         // Google Forms로 데이터 전송 (기존 방식 유지)
         const googleFormBaseUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSdnP979PWZO0YLJBS9QXwbjdPL6efLNCZjFLVvepVS3cd8GIA/formResponse';
-        const entryIdEmployeeId = 'entry.886611971';     // 새눤님의 사번 entry ID
-        const entryIdScore = 'entry.1024204280';               // 새눤님의 점수 entry ID
-        const entryIdTime = 'entry.1174827518';                 // 새눤님의 소요 시간 entry ID
+        const entryIdEmployeeId = 'entry.886611971';     // 사번 entry ID
+        const entryIdScore = 'entry.1024204280';               // 점수 entry ID
+        const entryIdTime = 'entry.1174827518';                 // 소요 시간 entry ID
 
         const formData = new FormData();
         formData.append(entryIdEmployeeId, currentPlayerId);
