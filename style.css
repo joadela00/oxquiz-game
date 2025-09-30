@@ -30,7 +30,7 @@ body {
 
 .screen {
     background-size: cover;
-    background-position: center 30%;
+    background-position: center;
     background-repeat: no-repeat;
     
     background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.3)), var(--screen-background-image) !important;
@@ -340,5 +340,6 @@ body {
     background-color: #333;
 
 }
+
 
 
