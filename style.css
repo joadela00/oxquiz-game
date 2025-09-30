@@ -33,7 +33,7 @@ body {
     background-position: center 30%;
     background-repeat: no-repeat;
     
-    background-image: linear-gradient(rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.2)), var(--screen-background-image) !important;
+    background-image: linear-gradient(rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.0)), var(--screen-background-image) !important;
 
     padding: 40px; /* 각 화면의 기본 패딩 */
     border-radius: inherit;
@@ -72,8 +72,8 @@ body {
 #employee-id-input {
     width: calc(100% - 40px);
     padding: 12px 20px;
-    margin-top: 200px; /* 사번 입력 칸의 상단 마진 */
-    margin-bottom: 20px;
+    margin-top: 250px; /* 사번 입력 칸의 상단 마진 */
+    margin-bottom: 10px;
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 16px;
@@ -86,7 +86,7 @@ body {
     align-items: center;
     flex-wrap: nowrap;
     gap: 10px;
-    margin-top: 20px;
+    margin-top: 0px;
     width: 100%;
 }
 
@@ -405,7 +405,7 @@ body {
 #quiz-screen.quiz-finished-bg {
     background-image: url('background2.jpeg') !important; /* 이미지 직접 적용, 오버레이 제거 */
     background-color: transparent !important; /* 배경색도 투명 */
-    padding-top: 130px; /* 최종 화면 전체 콘텐츠의 상단 여백 (새눤님 선호 상태 유지) */
+    padding-top: 100px; /* 최종 화면 전체 콘텐츠의 상단 여백 (새눤님 선호 상태 유지) */
     justify-content: flex-start; /* 최종 화면 전체 콘텐츠를 위에서부터 정렬 (새눤님 선호 상태 유지) */
 }
 
@@ -437,7 +437,7 @@ body {
     align-items: center;
     flex-wrap: nowrap;
     gap: 10px;
-    margin-top: 20px;
+    margin-top: 10px;
     width: 100%;
 }
 
@@ -503,14 +503,14 @@ body {
 
 #result-message { /* 최종 점수 줄의 마진 (기존 설정 그대로 유지) */
     font-size: 24px;
-    margin-top: 40px; /* 최종 점수 화면은 이 마진탑을 유지합니다! */
+    margin-top: 0px; /* 최종 점수 화면은 이 마진탑을 유지합니다! */
     font-weight: bold;
     min-height: 30px;
 }
 
 /* 퀴즈 중 '정답/오답' 메시지에만 적용되는 클래스 (CSS 우선순위 해결) */
 #result-message.quiz-feedback-margin {
-    margin-top: 30px; /* O/X 버튼과 '정답/오답' 메시지 사이의 간격 */
+    margin-top: 40px; /* O/X 버튼과 '정답/오답' 메시지 사이의 간격 */
 }
 
 #score-display {
