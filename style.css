@@ -1,4 +1,3 @@
-
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
@@ -9,19 +8,16 @@ body {
     min-height: 100vh;
     flex-direction: column;
     overflow: hidden;
-
     background-color: #ffe0f0; /* 페이지 전체 배경: 옅은 핑크톤 단색 */
 }
 
 .main-container {
     width: 90%;
     max-width: 500px; /* 창의 최대 너비 고정 */
-    
     background-color: transparent;
     padding: 0;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    
     text-align: center;
     position: relative;
     z-index: 1;
@@ -32,16 +28,13 @@ body {
     background-size: cover;
     background-position: center 30%;
     background-repeat: no-repeat;
-    
     background-image: linear-gradient(rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.0)), var(--screen-background-image) !important;
-
     padding: 40px; /* 각 화면의 기본 패딩 */
     border-radius: inherit;
     min-height: 400px; /* 각 화면의 최소 높이 유지 */
     display: flex;
     flex-direction: column;
-    /* 이전의 'center' 대신 'flex-start'로 변경하여 화면 울렁거림 방지 */
-    justify-content: flex-start; /* <--- 이 부분만 'flex-start'로 변경했습니다! */
+    justify-content: flex-start; /* 화면 울렁거림 방지를 위해 위에서부터 정렬 */
     align-items: center;
     width: 100%;
     box-sizing: border-box;
@@ -50,14 +43,13 @@ body {
 #pre-quiz-screen { --screen-background-image: url('background1.jpeg'); }
 #quiz-screen { --screen-background-image: url('background.jpeg'); }
 
-/* 퀴즈 완료 시 #quiz-screen의 배경과 콘텐츠 배치 조정! (이전 상태) */
+/* 퀴즈 완료 시 #quiz-screen의 배경과 콘텐츠 배치 조정 */
 #quiz-screen.quiz-finished-bg {
     background-image: url('background2.jpeg') !important; /* 이미지 직접 적용, 오버레이 제거 */
     background-color: transparent !important; /* 배경색도 투명 */
-    padding-top: 100px; /* 최종 화면 전체 콘텐츠의 상단 여백 (새눤님 선호 상태 유지) */
-    justify-content: flex-start; /* 최종 화면 전체 콘텐츠를 위에서부터 정렬 (새눤님 선호 상태 유지) */
+    padding-top: 100px; /* 최종 화면 전체 콘텐츠의 상단 여백 */
+    justify-content: flex-start; /* 최종 화면 전체 콘텐츠를 위에서부터 정렬 */
 }
-
 
 #pre-quiz-screen h2 {
     font-size: 28px;
@@ -72,8 +64,8 @@ body {
 #employee-id-input {
     width: calc(100% - 40px);
     padding: 12px 20px;
-    margin-top: 250px; /* 사번 입력 칸의 상단 마진 */
-    margin-bottom: 10px;
+    margin-top: 200px; /* 사번 입력 칸의 상단 마진 */
+    margin-bottom: 15px;
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 16px;
@@ -92,33 +84,36 @@ body {
 
 #question {
     font-size: 28px;
-    margin-bottom: 0px;
+    margin-bottom: 0px; /* O/X 버튼 그룹과의 직접 마진은 0 */
     color: #2c3e50;
-    min-height: 180px; /* 새눤님께서 원하시는 질문 영역 최소 높이 */
+    height: 180px; /* <--- 중요! 질문 영역의 높이를 고정하여 화면 흔들림 방지 */
     display: flex;
     align-items: center;
     justify-content: center;
     word-break: keep-all;
+    line-height: 1.3; /* 텍스트가 여러 줄일 때 보기 좋게 줄 간격 조절 */
 }
 
 .buttons {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 0px; /* 정답/오답 메시지와의 간격을 위해 0px로 설정 */
-    margin-top: 20px; /* O/X 버튼과 문제 사이의 간격을 조절 */
+    margin-bottom: 0px; /* O/X 버튼 아래 여백을 0으로 설정 */
+    margin-top: 20px; /* O/X 버튼과 문제 사이의 간격 */
     gap: 50px; /* O/X 버튼 사이의 간격 */
 }
 
 .btn {
-    background-color: #3498db;
-    color: white;
-    border: none;
-    padding: 12px 18px;
-    font-size: 18px;
+    /* <--- 중요! 일반 버튼의 배경색을 다시 추가했습니다. */
+    background-color: #3498db; 
+    color: white; /* 버튼 텍스트 색상 */
+    border: 3px solid transparent; /* 정답/오답 피드백 외곽선이 깔끔하게 보이도록 투명 테두리 추가 */
+    padding: 12px 18px; 
+    font-size: 18px;    
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    /* 모든 변화가 부드럽게 적용되도록 transition 속성 추가/업데이트 */
+    transition: background-color 0.3s ease, transform 0.1s ease-out, box-shadow 0.1s ease-out, border 0.3s ease;
     
     flex-grow: 1;
     flex-shrink: 1;
@@ -127,390 +122,71 @@ body {
 }
 
 .btn:hover {
-    background-color: #2980b9;
+    background-color: #2980b9; /* 일반 버튼의 호버 색상 */
 }
 
+/* --- 중요: O/X 버튼 이미지 스타일 --- */
+/* 일반 .btn 스타일을 덮어씁니다. */
 .o-btn {
-    background-color: #27ae60;
-    padding: 20px 25px;
-    font-size: 20px
+    background-image: url('o_button.png'); /* <--- 여기가 O 이미지 경로입니다! */
+    background-size: contain;   /* <--- 버튼 크기에 맞춰 이미지가 축소/확대됩니다. 'cover'도 가능 */
+    background-repeat: no-repeat; /* <--- 이미지가 반복되지 않도록 합니다 */
+    background-position: center; /* <--- 이미지를 버튼 중앙에 배치합니다 */
+    
+    background-color: transparent; /* O/X 버튼 자체의 배경색은 투명하게 하여 이미지 보이기 */
+    padding: 20px 25px; /* <--- 이미지와 버튼 크기에 맞춰 이 값을 조절하세요 */
+    font-size: 0;      /* <--- 'O' 텍스트를 숨깁니다 */
+    color: transparent; /* <--- 혹시 모를 글자색도 투명하게 */
 }
 
 .o-btn:hover {
-    background-color: #219350;
+    background-color: rgba(33, 147, 80, 0.1); /* <--- O 버튼 호버 시 살짝 밝은 초록색 음영 */
 }
 
 .x-btn {
-    background-color: #e74c3c;
-    padding: 20px 25px;
-    font-size: 20px
-}
-
-.x-btn:hover {
-    background-color: #c0392b;
-}
-
-#result-message { /* 최종 점수 줄의 마진 (기존 설정 그대로 유지) */
-    font-size: 24px;
-    margin-top: 30px; /* 최종 점수 화면은 이 마진탑을 유지합니다! */
-    font-weight: bold;
-    min-height: 30px;
-}
-
-/* 퀴즈 중 '정답/오답' 메시지에만 적용되는 클래스 (CSS 우선순위 해결) */
-#result-message.quiz-feedback-margin {
-    margin-top: 30px; /* O/X 버튼과 '정답/오답' 메시지 사이의 간격 */
-}
-
-#score-display {
-    font-size: 22px;
-    margin-top: 20px;
-    color: #333;
-}
-
-.timer-display {
-    font-size: 22px;
-    font-weight: bold;
-    color: #333;
-    margin-bottom: 20px;
-}
-
-.ranking-section {
-    background-color: transparent;
-    box-shadow: none;
-}
-
-#ranking-section-final { /* 최종 랭킹 칸의 마진 (새눤님께서 15px로 조절하신 상태) */
-    background-color: #e0f2f7; /* 옅은 하늘색으로 채우기 */
-    background-image: none;
-    background-blend-mode: normal;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
-
-    padding: 15px;
-    margin-top: 20px; 
-    border-radius: 8px;
-    max-width: 450px;
-    max-height: 280px;
-    overflow-y: auto;
-    margin-left: auto;
-    margin-right: auto;
-    box-sizing: border-box;
-    
-    position: relative;
-    z-index: 2;
-}
-
-
-.ranking-section h2, .ranking-section h3 {
-    color: #333;
-    font-size: 24px;
-    margin-bottom: 20px;
-}
-
-.ranking-list {
-    list-style: none;
-    padding: 0;
-    text-align: left;
-    margin-bottom: 20px;
-    border-top: 1px solid rgba(238, 238, 238, 0.8);
-}
-
-.ranking-list li {
-    background-color: rgba(255, 255, 255, 0.8);
-    padding: 12px 15px;
-    border-bottom: 1px solid rgba(238, 238, 238, 0.8);
-    font-size: 14px;   /*  여기가 순위사번지사 랭킹 내 글씨크기*/
-    color: #555;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.ranking-list li:first-child {
-    border-top: none;
-}
-
-.ranking-list li:nth-child(odd) {
-    background-color: rgba(252, 252, 252, 0.8);
-}
-
-.ranking-list li .rank-number {
-    font-weight: bold;
-    color: #007bff;
-    margin-right: 10px;
-    min-width: 20px;
-}
-.ranking-list li .player-info {
-    flex-grow: 1;
-}
-.ranking-list li .score-time {
-    font-weight: bold;
-    color: #28a745;
-    margin-left: 10px;
-    white-space: nowrap;
-}
-
-.restart-btn {
-    background-color: #f39c12;
-}
-
-.restart-btn:hover {
-    background-color: #e67e22;
-}
-
-.question-counter {
-    font-size: 18px;
-    color: #888;
-    margin-bottom: 0px;
-    font-weight: bold;
-}
-
-/* 커스텀 팝업창(모달) 스타일 */
-#custom-alert-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-}
-
-#custom-alert-box {
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    max-width: 400px;
-    width: 90%;
-    text-align: center;
-}
-
-#custom-alert-title {
-    font-size: 26px;
-    color: #2c3e50;
-    margin-bottom: 15px;
-}
-
-#custom-alert-message {
-    font-size: 18px;
-    color: #666;
-    margin-bottom: 25px;
-}
-
-#custom-alert-ok-btn {
-    background-color: #3498db;
-    padding: 10px 25px;
-    font-size: 18px;
-}
-#custom-alert-ok-btn:hover {
-    background-color: #2980b9;
-}
-
-/* 랭킹 팝업창 스타일 */
-#ranking-modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* 반투명 검은 배경 */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 1010; /* 커스텀 알림창보다 위에 오도록 */
-}
-
-#ranking-modal-box {
-    background-color: #e0f2f7; /* 명예의 전당과 동일한 하늘색 */
-    padding: 30px;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    max-width: 400px;
-    width: 90%;
-    text-align: center;
-    box-sizing: border-box;
-    max-height: 80vh; /* 화면 높이에 따라 조절 */
-    overflow-y: auto; /* 내용이 넘치면 스크롤 */
-}
-#ranking-modal-box h3 {
-    font-size: 26px;
-    color: #333;
-    margin-bottom: 20px;
-}
-#ranking-modal-box .ranking-list {
-    margin-bottom: 20px;
-}
-#ranking-modal-close-btn {
-    background-color: #555;
-}
-#ranking-modal-close-btn:hover {
-    background-color: #333;
-
-} body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    flex-direction: column;
-    overflow: hidden;
-
-    background-color: #ffe0f0; /* 페이지 전체 배경: 옅은 핑크톤 단색 */
-}
-
-.main-container {
-    width: 90%;
-    max-width: 500px; /* 창의 최대 너비 고정 */
-    
-    background-color: transparent;
-    padding: 0;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    
-    text-align: center;
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
-}
-
-.screen {
-    background-size: cover;
-    background-position: center 30%;
+    background-image: url('x_button.png'); /* <--- 여기가 X 이미지 경로입니다! */
+    background-size: contain;   /* <--- 버튼 크기에 맞춰 이미지가 축소/확대됩니다 */
     background-repeat: no-repeat;
+    background-position: center;
     
-    background-image: linear-gradient(rgba(255, 255, 255, 0.0), rgba(255, 255, 255, 0.2)), var(--screen-background-image) !important;
-
-    padding: 40px; /* 각 화면의 기본 패딩 */
-    border-radius: inherit;
-    min-height: 400px; /* 각 화면의 최소 높이 유지 */
-    display: flex;
-    flex-direction: column;
-    /* 이전의 'center' 대신 'flex-start'로 변경하여 화면 울렁거림 방지 */
-    justify-content: flex-start; /* <--- 이 부분만 'flex-start'로 변경했습니다! */
-    align-items: center;
-    width: 100%;
-    box-sizing: border-box;
-}
-
-#pre-quiz-screen { --screen-background-image: url('background1.jpeg'); }
-#quiz-screen { --screen-background-image: url('background.jpeg'); }
-
-/* 퀴즈 완료 시 #quiz-screen의 배경과 콘텐츠 배치 조정! (이전 상태) */
-#quiz-screen.quiz-finished-bg {
-    background-image: url('background2.jpeg') !important; /* 이미지 직접 적용, 오버레이 제거 */
-    background-color: transparent !important; /* 배경색도 투명 */
-    padding-top: 100px; /* 최종 화면 전체 콘텐츠의 상단 여백 (새눤님 선호 상태 유지) */
-    justify-content: flex-start; /* 최종 화면 전체 콘텐츠를 위에서부터 정렬 (새눤님 선호 상태 유지) */
-}
-
-
-#pre-quiz-screen h2 {
-    font-size: 28px;
-    color: #2c3e50;
-    margin-bottom: 15px;
-}
-#pre-quiz-screen p {
-    font-size: 18px;
-    color: #666;
-    margin-bottom: 25px;
-}
-#employee-id-input {
-    width: calc(100% - 40px);
-    padding: 12px 20px;
-    margin-top: 200px; /* 사번 입력 칸의 상단 마진 */
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    font-size: 16px;
-    box-sizing: border-box;
-}
-
-.button-group {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: nowrap;
-    gap: 10px;
-    margin-top: 10px;
-    width: 100%;
-}
-
-#question {
-    font-size: 28px;
-    margin-bottom: 0px;
-    color: #2c3e50;
-    min-height: 180px; /* 새눤님께서 원하시는 질문 영역 최소 높이 */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    word-break: keep-all;
-}
-
-.buttons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 0px; /* 정답/오답 메시지와의 간격을 위해 0px로 설정 */
-    margin-top: 20px; /* O/X 버튼과 문제 사이의 간격을 조절 */
-    gap: 50px; /* O/X 버튼 사이의 간격 */
-}
-
-.btn {
-    background-color: #3498db;
-    color: white;
-    border: none;
-    padding: 12px 18px;
-    font-size: 18px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    
-    flex-grow: 1;
-    flex-shrink: 1;
-    flex-basis: auto;
-    max-width: 180px;
-}
-
-.btn:hover {
-    background-color: #2980b9;
-}
-
-.o-btn {
-    background-color: #27ae60;
-    padding: 20px 25px;
-    font-size: 20px
-}
-
-.o-btn:hover {
-    background-color: #219350;
-}
-
-.x-btn {
-    background-color: #e74c3c;
-    padding: 20px 25px;
-    font-size: 20px
+    background-color: transparent; /* X 버튼 자체의 배경색은 투명하게 하여 이미지 보이기 */
+    padding: 20px 25px; /* <--- 이미지와 버튼 크기에 맞춰 이 값을 조절하세요 */
+    font-size: 0;      /* <--- 'X' 텍스트를 숨깁니다 */
+    color: transparent; /* <--- 혹시 모를 글자색도 투명하게 */
 }
 
 .x-btn:hover {
-    background-color: #c0392b;
+    background-color: rgba(192, 57, 43, 0.1); /* <--- X 버튼 호버 시 살짝 밝은 빨간색 음영 */
 }
 
-#result-message { /* 최종 점수 줄의 마진 (기존 설정 그대로 유지) */
+/* --- 중요: 버튼 눌림 효과 (active) --- */
+/* O/X 버튼 공통으로 적용 (클릭 시 물리적인 눌림 효과) */
+.o-btn:active,
+.x-btn:active {
+    transform: translateY(2px); /* 버튼이 2px 아래로 살짝 내려갑니다 */
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.5); /* 내부 그림자를 추가하여 눌리는 듯한 깊이감을 줍니다 */
+}
+
+/* --- 중요: 정답/오답 결과 피드백 스타일 --- */
+/* (script.js에서 클래스를 추가/제거하여 사용) */
+.correct-btn {
+    border: 3px solid #27ae60; /* 정답일 경우 초록색 외곽선 */
+    /* background-color: rgba(39, 174, 96, 0.2); // 배경 이미지를 덮지 않도록 투명도 조절된 배경색 (선택 사항) */
+}
+
+.incorrect-btn {
+    border: 3px solid #e74c3c; /* 오답일 경우 빨간색 외곽선 */
+    /* background-color: rgba(231, 76, 60, 0.2); // 배경 이미지를 덮지 않도록 투명도 조절된 배경색 (선택 사항) */
+}
+
+
+#result-message {
     font-size: 24px;
-    margin-top: 0px; /* 최종 점수 화면은 이 마진탑을 유지합니다! */
     font-weight: bold;
-    min-height: 30px;
-}
-
-/* 퀴즈 중 '정답/오답' 메시지에만 적용되는 클래스 (CSS 우선순위 해결) */
-#result-message.quiz-feedback-margin {
-    margin-top: 40px; /* O/X 버튼과 '정답/오답' 메시지 사이의 간격 */
+    height: 30px; /* <--- 중요! 메시지 영역의 높이를 고정하여 화면 흔들림 방지 */
+    opacity: 0; /* 초기 상태는 투명 (숨김) */
+    transition: opacity 0.3s ease-in-out; /* 부드러운 전환 효과 */
+    margin-top: 20px; /* 퀴즈 중/최종 점수 모두에 공통으로 적용될 기본 마진 */
 }
 
 #score-display {
@@ -531,12 +207,11 @@ body {
     box-shadow: none;
 }
 
-#ranking-section-final { /* 최종 랭킹 칸의 마진 (새눤님께서 15px로 조절하신 상태) */
+#ranking-section-final { /* 최종 랭킹 칸 */
     background-color: #e0f2f7; /* 옅은 하늘색으로 채우기 */
     background-image: none;
     background-blend-mode: normal;
     box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
-
     padding: 15px;
     margin-top: 20px; 
     border-radius: 8px;
@@ -546,11 +221,9 @@ body {
     margin-left: auto;
     margin-right: auto;
     box-sizing: border-box;
-    
     position: relative;
     z-index: 2;
 }
-
 
 .ranking-section h2, .ranking-section h3 {
     color: #333;
@@ -570,7 +243,7 @@ body {
     background-color: rgba(255, 255, 255, 0.8);
     padding: 12px 15px;
     border-bottom: 1px solid rgba(238, 238, 238, 0.8);
-    font-size: 14px;   /*  여기가 순위사번지사 랭킹 내 글씨크기*/
+    font-size: 14px;   /* 여기가 순위사번지사 랭킹 내 글씨크기*/
     color: #555;
     display: flex;
     justify-content: space-between;
@@ -700,5 +373,4 @@ body {
 }
 #ranking-modal-close-btn:hover {
     background-color: #333;
-
 }

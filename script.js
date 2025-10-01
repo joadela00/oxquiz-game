@@ -1,4 +1,3 @@
-
 /* 코드를 읽는 건 너무 야비해요 */
 
 const originalQuizData = [
@@ -15,7 +14,7 @@ const originalQuizData = [
         answer: false
     },
     {
-        question: "전화를 끊고나면 바로 행지팀에 알려준다",
+        question: "전화를 끊고나면 바로 행지에 알려준다",
         answer: true
     },
     {
@@ -79,7 +78,7 @@ const originalQuizData = [
         answer: true
     },
     {
-        question: "전화를 돌려주면 뒷사람만 평가받는다",
+        question: "전화를 넘기면 뒷사람만 평가받는다",
         answer: false
     },
     {
@@ -99,7 +98,7 @@ const originalQuizData = [
         answer: false
     },
     {
-        question: "빈자리 이석을 눌러주면 국제법 위반이다",
+        question: "이 시기, 빈자리 이석을 눌러주면 국제법 위반이다",
         answer: false
     },
     {
@@ -107,7 +106,7 @@ const originalQuizData = [
         answer: false
     },
     {
-        question: "전화를 망치면 행지팀엔 비밀로 한다",
+        question: "전화를 망치면 행지엔 비밀로 한다",
         answer: false
     },
     {
@@ -115,7 +114,6 @@ const originalQuizData = [
         answer: true
     }
 ];
-
 
 let shuffledQuizData = [];
 let currentPlayerId = '';
@@ -216,11 +214,9 @@ function startQuizProcess() {
    
     quizScreen.classList.remove('quiz-finished-bg');
 
-    // 퀴즈 시작 시 resultMessageElement를 완전히 초기화 (내용 비우고 투명하게)
+    // resultMessageElement를 완전히 초기화 (내용 비우고 투명하게)
     resultMessageElement.textContent = '';
-    resultMessageElement.style.opacity = '0'; // 투명하게 만들어서 보이지 않게 함
-    resultMessageElement.classList.remove('quiz-feedback-margin'); // 혹시 모를 잔여 클래스 제거
-
+    resultMessageElement.style.opacity = '0'; 
 
     loadQuiz();
 }
@@ -230,18 +226,22 @@ function loadQuiz() {
 
     // 새 문제 로드 시 이전 메시지 비우고 투명하게 (공간은 유지)
     resultMessageElement.textContent = '';
-    resultMessageElement.style.opacity = '0'; // 투명하게 만들어서 보이지 않게 함
-    resultMessageElement.classList.remove('quiz-feedback-margin'); // 퀴즈 중 피드백 마진 클래스 제거
+    resultMessageElement.style.opacity = '0';
 
     oButton.disabled = false;
     xButton.disabled = false;
     timerElement.style.color = '#333';
+
+    // 중요: 새 문제 로드 시 이전 문제의 피드백 클래스 제거!
+    oButton.classList.remove('correct-btn', 'incorrect-btn');
+    xButton.classList.remove('correct-btn', 'incorrect-btn');
 
     if (currentQuizIndex < shuffledQuizData.length) {
         const currentQuiz = shuffledQuizData[currentQuizIndex];
        
         questionElement.textContent = currentQuiz.question;
         scoreDisplay.textContent = `점수: ${score}`;
+        timerElement.textContent = `남은 시간: ${timeLeft}초`; // 타이머 텍스트 먼저 업데이트
         timerElement.style.display = 'block';
         questionCounterElement.textContent = `${currentQuizIndex + 1} / ${shuffledQuizData.length} 문제`;
         questionElement.style.marginTop = '20px'; // 질문 상단 마진은 유지
@@ -266,9 +266,6 @@ function loadQuiz() {
                 xButton.disabled = true;
                 scoreDisplay.textContent = `점수: ${score}`;
 
-                // 퀴즈 중 피드백 메시지이므로 클래스 추가! (마진 조절)
-                resultMessageElement.classList.add('quiz-feedback-margin');
-
                 setTimeout(() => {
                     currentQuizIndex++;
                     loadQuiz();
@@ -280,13 +277,10 @@ function loadQuiz() {
         const totalTimeTakenMillis = quizEndTime - quizStartTime;
         const totalTimeTakenFormatted = (totalTimeTakenMillis / 1000).toFixed(2);
 
-        // 최종 점수 메시지이므로 퀴즈 피드백 마진 클래스는 제거! (기본 마진 사용)
-        resultMessageElement.classList.remove('quiz-feedback-margin');
-        resultMessageElement.style.opacity = '1'; // 최종 점수 메시지 보이게 함 (이때는 기본 마진 70px 적용)
+        resultMessageElement.style.opacity = '1'; // 최종 점수 메시지 보이게 함 (이때는 #result-message에 정의된 기본 margin-top 20px 적용)
 
-        questionElement.textContent = '';
-        questionElement.style.height = '0'; // 질문 공간은 필요 없으므로 완전히 숨김
-        questionElement.style.overflow = 'hidden';
+        questionElement.textContent = ''; // 질문 텍스트만 비움
+        questionElement.style.overflow = ''; 
 
         resultMessageElement.textContent = `최종: ${score}점 (${totalTimeTakenFormatted}초)`;
         resultMessageElement.style.color = '#333';
@@ -409,8 +403,9 @@ restartButton.addEventListener('click', () => {
     quizScreen.style.display = 'none';
     employeeIdInput.value = '';
    
-    questionElement.style.height = ''; // 질문 공간 복구
-    questionElement.style.overflow = ''; // overflow도 복구
+    // 질문 공간의 height는 CSS에서 고정되므로 스크립트에서 height는 초기화할 필요 없음
+    // questionElement.style.height = ''; 
+    questionElement.style.overflow = ''; 
     questionElement.textContent = ''; // 텍스트만 비움
 
     rankingModalOverlay.style.display = 'none';
@@ -422,7 +417,6 @@ restartButton.addEventListener('click', () => {
     // resultMessageElement 초기화
     resultMessageElement.textContent = '';
     resultMessageElement.style.opacity = '0';
-    resultMessageElement.classList.remove('quiz-feedback-margin');
 
 
     fetchAndDisplayRankings(); // 초기 화면 복귀 시에도 랭킹 업데이트
@@ -438,16 +432,25 @@ function checkAnswer(userAnswer) {
         resultMessageElement.textContent = '💚💚💚';
         resultMessageElement.style.color = '#27ae60';
         score++;
+        // 중요: 정답 버튼에 클래스 추가
+        if (userAnswer === true) { // O 버튼을 눌러 정답 맞췄을 때
+            oButton.classList.add('correct-btn');
+        } else { // X 버튼을 눌러 정답 맞췄을 때
+            xButton.classList.add('correct-btn');
+        }
     } else {
-        resultMessageElement.textContent = '💔';
+        resultMessageElement.textContent = '💔💔💔';
         resultMessageElement.style.color = '#e74c3c';
+        // 중요: 오답 버튼에 클래스 추가
+        if (userAnswer === true) { // O 버튼을 눌러 오답이었을 때
+            oButton.classList.add('incorrect-btn');
+        } else { // X 버튼을 눌러 오답이었을 때
+            xButton.classList.add('incorrect-btn');
+        }
     }
     resultMessageElement.style.opacity = '1'; // 메시지 보이게 함
 
     scoreDisplay.textContent = `점수: ${score}`;
-
-    // 퀴즈 중 피드백 메시지이므로 클래스 추가! (마진 조절)
-    resultMessageElement.classList.add('quiz-feedback-margin');
 
     setTimeout(() => {
         currentQuizIndex++;
@@ -463,6 +466,5 @@ rankingModalOverlay.style.display = 'none';
 // 웹사이트 로드 시 resultMessageElement 초기화
 resultMessageElement.textContent = '';
 resultMessageElement.style.opacity = '0';
-resultMessageElement.classList.remove('quiz-feedback-margin');
 
 fetchAndDisplayRankings(); // 초기 화면 로드 시에도 랭킹 표시
