@@ -91,49 +91,37 @@ function shuffleArray(array) {
 
 function startQuizProcess() {
     currentPlayerId = employeeIdInput.value.trim();
-
     if (currentPlayerId === '') {
         customAlert('사번 입력 오류', '사번이 필요해요!');
         return;
     }
-
     const sixDigitsPattern = /^\d{6}$/;
     const letterAndFiveDigitsPattern = /^[a-zA-Z]\d{5}$/;
-
     if (!(sixDigitsPattern.test(currentPlayerId) || letterAndFiveDigitsPattern.test(currentPlayerId))) {
         customAlert('사번 오류', '올바른 사번을 넣어주세요');
         return;
     }
-
     preQuizScreen.style.display = 'none';
     quizScreen.style.display = 'flex';
-
     const tempShuffled = shuffleArray([...originalQuizData]);
     shuffledQuizData = tempShuffled.slice(0, 5);
-
     currentQuizIndex = 0;
     score = 0;
     quizStartTime = new Date().getTime();
-
     oButton.style.display = 'inline-block';
     xButton.style.display = 'inline-block';
     rankingSectionFinal.style.display = 'none';
     scoreDisplay.style.display = 'block';
     questionCounterElement.style.display = 'block';
-
     rankingModalOverlay.style.display = 'none';
-    
     quizScreen.classList.remove('quiz-finished-bg');
-
     resultMessageElement.textContent = '';
     resultMessageElement.style.opacity = '0'; 
-
     loadQuiz();
 }
 
 function loadQuiz() {
     clearInterval(timerId);
-
     resultMessageElement.textContent = '';
     resultMessageElement.style.opacity = '0';
 
@@ -141,6 +129,8 @@ function loadQuiz() {
     xButton.classList.remove('correct-btn', 'incorrect-btn');
     oButton.style.border = '3px solid transparent';
     xButton.style.border = '3px solid transparent';
+    oButton.style.backgroundColor = 'transparent';
+    xButton.style.backgroundColor = 'transparent';
 
     oButton.disabled = false;
     xButton.disabled = false;
@@ -148,7 +138,6 @@ function loadQuiz() {
 
     if (currentQuizIndex < shuffledQuizData.length) {
         const currentQuiz = shuffledQuizData[currentQuizIndex];
-        
         questionElement.textContent = currentQuiz.question;
         scoreDisplay.textContent = `점수: ${score}`;
         timerElement.textContent = `남은 시간: ${timeLeft}초`;
@@ -162,11 +151,9 @@ function loadQuiz() {
         timerId = setInterval(() => {
             timeLeft--;
             timerElement.textContent = `남은 시간: ${timeLeft}초`;
-
             if (timeLeft <= 5) {
                 timerElement.style.color = '#e74c3c';
             }
-
             if (timeLeft <= 0) {
                 clearInterval(timerId);
                 resultMessageElement.textContent = '💤';
@@ -175,7 +162,6 @@ function loadQuiz() {
                 oButton.disabled = true;
                 xButton.disabled = true;
                 scoreDisplay.textContent = `점수: ${score}`;
-
                 setTimeout(() => {
                     currentQuizIndex++;
                     loadQuiz();
@@ -186,21 +172,16 @@ function loadQuiz() {
         quizEndTime = new Date().getTime();
         const totalTimeTakenMillis = quizEndTime - quizStartTime;
         const totalTimeTakenFormatted = (totalTimeTakenMillis / 1000).toFixed(2);
-
         resultMessageElement.style.opacity = '1';
-
         questionElement.textContent = '';
         questionElement.style.overflow = ''; 
-
         resultMessageElement.textContent = `최종: ${score}점 (${totalTimeTakenFormatted}초)`;
         resultMessageElement.style.color = '#333';
-
         oButton.style.display = 'none';
         xButton.style.display = 'none';
         timerElement.style.display = 'none';
         scoreDisplay.style.display = 'none';
         questionCounterElement.style.display = 'none';
-        
         quizScreen.classList.add('quiz-finished-bg');
 
         const googleFormBaseUrl = 'https://docs.google.com/forms/d/e/1FAIpQLSdnP979PWZO0YLJBS9QXwbjdPL6efLNCZjFLVvepVS3cd8GIA/formResponse';
@@ -261,19 +242,15 @@ async function fetchAndDisplayRankings() {
 
 function displayRankingsToDOM(rankings, targetListElement, showError = false) {
     targetListElement.innerHTML = '';
-
     if (showError) {
         targetListElement.innerHTML = '<li>랭킹을 불러오는데 실패했습니다.</li>';
         return;
     }
-
     if (rankings.length === 0) {
         targetListElement.innerHTML = '<li>첫 기록을 남겨보세요!</li>';
         return;
     }
-
     const limitedRankings = rankings.slice(0, 10);
-
     limitedRankings.forEach((entry, index) => {
         const timeTakenFormatted = (entry.timeTakenMillis / 1000).toFixed(2);
         const listItem = document.createElement('li');
@@ -303,24 +280,21 @@ restartButton.addEventListener('click', () => {
     preQuizScreen.style.display = 'flex';
     quizScreen.style.display = 'none';
     employeeIdInput.value = '';
-    
     questionElement.style.overflow = ''; 
     questionElement.textContent = '';
-
     rankingModalOverlay.style.display = 'none';
     quizScreen.classList.remove('quiz-finished-bg');
     rankingSectionFinal.style.position = '';
     rankingSectionFinal.style.zIndex = '';
     rankingSectionFinal.style.display = 'none';
-
     resultMessageElement.textContent = '';
     resultMessageElement.style.opacity = '0';
-
     oButton.classList.remove('correct-btn', 'incorrect-btn');
     xButton.classList.remove('correct-btn', 'incorrect-btn');
     oButton.style.border = '3px solid transparent';
     xButton.style.border = '3px solid transparent';
-
+    oButton.style.backgroundColor = 'transparent';
+    xButton.style.backgroundColor = 'transparent';
     fetchAndDisplayRankings();
 });
 
@@ -330,7 +304,6 @@ function checkAnswer(userAnswer) {
     xButton.disabled = true;
 
     let selectedButton;
-
     if (userAnswer === true) {
         selectedButton = oButton;
     } else {
@@ -343,25 +316,26 @@ function checkAnswer(userAnswer) {
         resultMessageElement.style.color = '#27ae60';
         score++;
         selectedButton.classList.add('correct-btn');
+        selectedButton.style.backgroundColor = 'rgba(39, 174, 96, 0.4)';
     } else {
         resultMessageElement.textContent = '💔';
         resultMessageElement.style.color = '#e74c3c';
         selectedButton.classList.add('incorrect-btn');
+        selectedButton.style.backgroundColor = 'rgba(231, 76, 60, 0.4)';
     }
     resultMessageElement.style.opacity = '1';
-
     scoreDisplay.textContent = `점수: ${score}`;
 
     setTimeout(() => {
         resultMessageElement.style.opacity = '0';
         selectedButton.classList.remove('correct-btn', 'incorrect-btn');
         selectedButton.style.border = '3px solid transparent';
+        selectedButton.style.backgroundColor = 'transparent';
         
         setTimeout(() => {
             currentQuizIndex++;
             loadQuiz();
         }, 0);
-
     }, 2000);
 }
 
@@ -376,5 +350,7 @@ oButton.classList.remove('correct-btn', 'incorrect-btn');
 xButton.classList.remove('correct-btn', 'incorrect-btn');
 oButton.style.border = '3px solid transparent';
 xButton.style.border = '3px solid transparent';
+oButton.style.backgroundColor = 'transparent';
+xButton.style.backgroundColor = 'transparent';
 
 fetchAndDisplayRankings();
