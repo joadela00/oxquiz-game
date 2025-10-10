@@ -8,7 +8,7 @@ const originalQuizData = [
     { question: "나 하나쯤은 건성으로 받아도 문제 없다", answer: false },
     { question: "간식이 별로면 전화는 대충 받는다 ", answer: false },
     { question: "적절한 호응이 없으면 좋은점수를 받기 어렵다", answer: true },
-    { question: "상반기에 전화를 받았으면 하반기엔 안받는다", answer: false },
+    { question: "상반기에 전화를 받았으면 하반기엔 안 받는다", answer: false },
     { question: "첫인사+끝맺음은 45점을 차지한다", answer: true },
     { question: "친근하게 반말을 섞어도 된다", answer: false },
     { question: "돌려주기는 가급적 하지 않는다", answer: true },
@@ -30,7 +30,7 @@ const originalQuizData = [
     { question: "이 시기, 빈자리 이석을 눌러주면 국제법 위반이다", answer: false },
     { question: "당겨받기는 귀여운 막내만 담당한다", answer: false },
     { question: "전화를 망치면 행지엔 비밀로 한다", answer: false },
-    { question: "전화를 돌릴 때 뒷사람 전화번호까지 소개한다", answer: true },
+    { question: "전화를 돌릴 때 뒷사람 전화번호까지 말해야한다", answer: true },
     { question: "점심시간에는 모니터링을 하지 않는다", answer: true }
 ];
 
@@ -375,5 +375,6 @@ xButton.style.backgroundColor = 'transparent';
 
 
 fetchAndDisplayRankings();
+
 
 
