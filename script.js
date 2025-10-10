@@ -1,6 +1,6 @@
 const originalQuizData = [
     { question: "모니터링은 평일 7일간 진행한다", answer: false },
-    { question: "모니터링은 평일 6일간 진행한다", answer: true },
+    { question: "내가 징수부라면, 장기요양 질문은 하지 않는다", answer: true },
     { question: "계속 벨이 울리면 끊어질때까지 기다린다", answer: false },
     { question: "전화를 끊고나면 바로 행지에 알려준다", answer: true },
     { question: "출근하면 시나리오를 켜놓는다", answer: true },
@@ -20,7 +20,7 @@ const originalQuizData = [
     { question: "모든 질문은 시나리오대로만 한다", answer: true },
     { question: "전화를 넘기면 뒷사람만 평가받는다", answer: false },
     { question: "2차수신 시, 용무인지는 선택사항이다", answer: false },
-    { question: "2차수신자는 이름을 생략할 수 있다", answer: false },
+    { question: "2차 수신자는 이름을 생략할 수 있다", answer: false },
     { question: "업무전화에서 직원의 이름은 비공개대상이다", answer: false },
     { question: "모니터링은 아침 9시반부터 시작한다", answer: true },
     { question: "팀원이 전화를 받는동안 큰소리로 응원전을 펼친다", answer: false },
@@ -368,5 +368,6 @@ oButton.style.border = '3px solid transparent';
 xButton.style.border = '3px solid transparent';
 oButton.style.backgroundColor = 'transparent';
 xButton.style.backgroundColor = 'transparent';
+
 
 fetchAndDisplayRankings();
