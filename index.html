@@ -4,24 +4,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>XO 인경 모니터링 QUIZ</title>
+    <title>만점받는 전화모니터링 XO퀴즈</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="main-container">
-        <!-- 퀴즈 시작 전 사번 입력 화면 -->
         <div id="pre-quiz-screen" class="screen">
 
             <input type="text" id="employee-id-input" placeholder="사번을 입력하세요">
             
-            <!-- 버튼 그룹 -->
             <div class="button-group">
                 <button id="start-quiz-btn" class="btn">퀴즈 시작</button>
                 <button id="show-initial-ranking-btn" class="btn">랭킹 보기</button>
             </div>
         </div>
 
-        <!-- 실제 퀴즈 화면 -->
         <div id="quiz-screen" class="screen" style="display: none;">
             <p id="question-counter" class="question-counter"></p>
             <h1 id="question">여기에 퀴즈 질문이 나타납니다.</h1>
@@ -33,11 +30,9 @@
             <p id="result-message"></p>
             <p id="score-display">점수: 0</p>
 
-            <!-- 퀴즈 완료 후 표시될 랭킹 섹션 -->
             <div id="ranking-section-final" class="ranking-section" style="display: none;">
                 <h2>랭킹</h2>
                 <ul id="final-ranking-list" class="ranking-list">
-                    <!-- 랭킹이 여기에 동적으로 추가됩니다 -->
                     <li>랭킹 데이터가 없습니다.</li>
                 </ul>
                 <button id="restart-button" class="btn restart-btn">다시 시작하기</button>
@@ -45,7 +40,7 @@
         </div>
     </div>
 
-    <!-- 커스텀 팝업창 (모달) HTML 구조 -->
+
     <div id="custom-alert-overlay" style="display: none;">
         <div id="custom-alert-box">
             <h3 id="custom-alert-title"></h3>
@@ -59,7 +54,6 @@
         <div id="ranking-modal-box">
             <h3>최신 랭킹</h3>
             <ul id="initial-ranking-list" class="ranking-list">
-                <!-- 랭킹 데이터가 여기에 동적으로 추가됩니다 -->
                 <li>랭킹 데이터가 없습니다.</li>
             </ul>
             <button id="ranking-modal-close-btn" class="btn">닫기</button>
@@ -68,5 +62,6 @@
 
     <script src="script.js"></script>
 </body>
+
 
 </html>
