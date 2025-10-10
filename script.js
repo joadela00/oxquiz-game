@@ -1,17 +1,20 @@
 const originalQuizData = [
     { question: "모니터링은 평일 7일간 진행한다", answer: false },
-    { question: "내가 징수부라면, 장기요양 질문은 하지 않는다", answer: true },
+    { question: "내가 징수부라면, 장기요양 질문은 받지 않는다", answer: true },
     { question: "계속 벨이 울리면 끊어질때까지 기다린다", answer: false },
     { question: "전화를 끊고나면 바로 행지에 알려준다", answer: true },
     { question: "출근하면 시나리오를 켜놓는다", answer: true },
     { question: "첫인사는 '여보세요?'라고 한다", answer: false },
-    { question: "나 하나쯤은 대충 받아도 끄떡 없다", answer: false },
-    { question: "첫인사+끝인사는 45점을 차지한다", answer: true },
+    { question: "나 하나쯤은 건성으로 받아도 문제 없다", answer: false },
+    { question: "간식이 별로면 전화는 대충 받는다 ", answer: false },
+    { question: "적절한 호응이 없으면 좋은점수를 받기 어렵다", answer: true },
+    { question: "상반기에 받았으면 하반기엔 안온다", answer: false },
+    { question: "첫인사+끝맺음은 45점을 차지한다", answer: true },
     { question: "친근하게 반말을 섞어도 된다", answer: false },
     { question: "돌려주기는 가급적 하지 않는다", answer: true },
     { question: "2차수신 시, 용무인지는 선택사항이다", answer: false },
     { question: "끝인사는 '네~'라고 짧게 한다", answer: false },
-    { question: "첫인사는 발음이 중요하지 않다", answer: false },
+    { question: "첫인사는 발음마저 신경써야 한다", answer: true },
     { question: "바쁘니까 고객보다 먼저 끊는다", answer: false },
     { question: "전화를 돌리면 보너스 점수를 받는다", answer: false },
     { question: "모니터링 전화냐고 반드시 되물어본다", answer: false },
@@ -371,3 +374,4 @@ xButton.style.backgroundColor = 'transparent';
 
 
 fetchAndDisplayRankings();
+
