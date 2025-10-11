@@ -30,11 +30,11 @@ body {
     width: 100%; box-sizing: border-box;
 }
 
-#pre-quiz-screen { --screen-background-image: url('background1.jpg'); }
-#quiz-screen { --screen-background-image: url('background.jpeg'); }
+#pre-quiz-screen { --screen-background-image: url('background1.webp'); }
+#quiz-screen { --screen-background-image: url('background.webp'); }
 
 #quiz-screen.quiz-finished-bg {
-    background-image: url('background2.jpeg') !important;
+    background-image: url('background2.webp') !important;
     background-color: transparent !important;
     padding-top: 100px;
     justify-content: flex-start;
@@ -242,4 +242,5 @@ body {
     background-image: url('ran.jpg');
 
 }
+
 
