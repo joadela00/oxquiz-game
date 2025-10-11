@@ -231,16 +231,17 @@ body {
 
 /* 각 버튼 이미지 적용 */
 #start-quiz-btn {
-    background-image: url('sta.jpg');
+    background-image: url('sta.webp');
 }
 
 #restart-button {
-    background-image: url('re.jpg');
+    background-image: url('re.webp');
 }
 
 #show-initial-ranking-btn {
-    background-image: url('ran.jpg');
+    background-image: url('ran.webp');
 
 }
+
 
 
