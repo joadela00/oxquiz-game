@@ -199,7 +199,10 @@ body {
 
 
 
-#start-quiz-btn,
+#start-quiz-btn {pointer-events:none;
+                 opacity:0.5;
+                 cursor:not-allowed;
+                },
 #restart-button,
 #show-initial-ranking-btn {
     width: 195px; /* 🚨🚨🚨 버튼의 가로 길이 명시 */
@@ -242,6 +245,7 @@ body {
     background-image: url('ran.webp');
 
 }
+
 
 
 
